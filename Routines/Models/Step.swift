@@ -9,10 +9,14 @@ import Foundation
 import SwiftData
 
 @Model
-final class Item {
+final class Step {
     var timestamp: Date
+    var name: String
+    var isComplete: Bool
     
-    init(timestamp: Date) {
+    init(timestamp: Date, name: String, isComplete: Bool) {
         self.timestamp = timestamp
+        self.name = name
+        self.isComplete = isComplete
     }
 }
