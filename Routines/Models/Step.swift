@@ -4,19 +4,16 @@
 //
 //  Created by Sam Clemente on 6/30/24.
 //
-
 import Foundation
 import SwiftData
 
 @Model
-final class Step {
-    var timestamp: Date
+final class Step: Identifiable {
+    var id = UUID()
     var name: String
-    var isComplete: Bool
+    var isComplete = false
     
-    init(timestamp: Date, name: String, isComplete: Bool) {
-        self.timestamp = timestamp
+    init(name: String = "Step") {
         self.name = name
-        self.isComplete = isComplete
     }
 }

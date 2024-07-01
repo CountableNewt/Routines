@@ -10,23 +10,16 @@ import SwiftData
 
 @main
 struct RoutinesApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Step.self, Routine.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
+    
+    init() {
+        ValueTransformer.setValueTransformer(UIColorValueTransformer(), forName: NSValueTransformerName("UIColorValueTransformer"))
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RoutineListView()
         }
-        .modelContainer(sharedModelContainer)
+        .modelContainer(for: Step.self)
+        .modelContainer(for: Routine.self)
     }
 }
