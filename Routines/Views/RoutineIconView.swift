@@ -1,0 +1,27 @@
+//
+//  RoutineIconView.swift
+//  Routines
+//
+//  Created by Sam Clemente on 7/2/24.
+//
+
+import Foundation
+import SwiftUI
+
+struct RoutineIconView: View {
+    var routine: Routine
+    
+    var body: some View {
+        Circle()
+            .fill(routine.iconColor.map { Color($0) } ?? Color.blue)
+            .frame(width: 42)
+            .overlay(
+                Image(systemName: routine.iconSymbol)
+                .foregroundColor(.white)
+            )
+    }
+}
+
+#Preview {
+    RoutineIconView(routine: SampleRoutines.routines[0])
+}
