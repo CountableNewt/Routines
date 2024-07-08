@@ -13,7 +13,7 @@ struct RoutineIconView: View {
     
     var body: some View {
         Circle()
-            .fill(routine.iconColor.map { Color($0) } ?? Color.blue)
+            .fill(routine.getIconColor())
             .frame(width: 42)
             .overlay(
                 Image(systemName: routine.iconSymbol)

@@ -11,10 +11,6 @@ import SwiftData
 @main
 struct RoutinesApp: App {
     
-    init() {
-        ValueTransformer.setValueTransformer(UIColorValueTransformer(), forName: NSValueTransformerName("UIColorValueTransformer"))
-    }
-    
     var body: some Scene {
         WindowGroup {
             RoutineListView()

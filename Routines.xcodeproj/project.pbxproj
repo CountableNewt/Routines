@@ -17,11 +17,12 @@
 		224CA0582C321EEF0096F094 /* RoutinesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224CA0572C321EEF0096F094 /* RoutinesUITestsLaunchTests.swift */; };
 		224CA0652C321FDD0096F094 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224CA0642C321FDD0096F094 /* Routine.swift */; };
 		226CC2312C330E6400F114B4 /* SampleRoutines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226CC2302C330E6400F114B4 /* SampleRoutines.swift */; };
-		226CC2352C333A0D00F114B4 /* UIColorValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226CC2342C333A0D00F114B4 /* UIColorValueTransformer.swift */; };
 		226CC23A2C33523D00F114B4 /* PreviewSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226CC2392C33523D00F114B4 /* PreviewSampleData.swift */; };
 		2282B9E42C34442D004FECDB /* AddRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282B9E32C34442D004FECDB /* AddRoutineView.swift */; };
 		2282B9E62C3446A5004FECDB /* DonationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282B9E52C3446A5004FECDB /* DonationView.swift */; };
 		2282B9E82C34472A004FECDB /* RoutineCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282B9E72C34472A004FECDB /* RoutineCardView.swift */; };
+		22A5E7D82C35E3890024CD51 /* SystemColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E7D72C35E3890024CD51 /* SystemColors.swift */; };
+		22C2ED412C35BCB100F597C0 /* AddRoutineIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C2ED402C35BCB100F597C0 /* AddRoutineIconView.swift */; };
 		22CC80CC2C3464DA0070FFF7 /* RoutineIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC80CB2C3464DA0070FFF7 /* RoutineIconView.swift */; };
 		22CC80CE2C346DDC0070FFF7 /* RoutineStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC80CD2C346DDC0070FFF7 /* RoutineStepView.swift */; };
 		22CC80D02C346DF40070FFF7 /* RoutineStepListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC80CF2C346DF40070FFF7 /* RoutineStepListView.swift */; };
@@ -60,11 +61,12 @@
 		224CA0572C321EEF0096F094 /* RoutinesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		224CA0642C321FDD0096F094 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
 		226CC2302C330E6400F114B4 /* SampleRoutines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleRoutines.swift; sourceTree = "<group>"; };
-		226CC2342C333A0D00F114B4 /* UIColorValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorValueTransformer.swift; sourceTree = "<group>"; };
 		226CC2392C33523D00F114B4 /* PreviewSampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSampleData.swift; sourceTree = "<group>"; };
 		2282B9E32C34442D004FECDB /* AddRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineView.swift; sourceTree = "<group>"; };
 		2282B9E52C3446A5004FECDB /* DonationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationView.swift; sourceTree = "<group>"; };
 		2282B9E72C34472A004FECDB /* RoutineCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCardView.swift; sourceTree = "<group>"; };
+		22A5E7D72C35E3890024CD51 /* SystemColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemColors.swift; sourceTree = "<group>"; };
+		22C2ED402C35BCB100F597C0 /* AddRoutineIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineIconView.swift; sourceTree = "<group>"; };
 		22CC80CB2C3464DA0070FFF7 /* RoutineIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineIconView.swift; sourceTree = "<group>"; };
 		22CC80CD2C346DDC0070FFF7 /* RoutineStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineStepView.swift; sourceTree = "<group>"; };
 		22CC80CF2C346DF40070FFF7 /* RoutineStepListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineStepListView.swift; sourceTree = "<group>"; };
@@ -160,8 +162,8 @@
 			children = (
 				224CA03C2C321EEE0096F094 /* Step.swift */,
 				224CA0642C321FDD0096F094 /* Routine.swift */,
-				226CC2342C333A0D00F114B4 /* UIColorValueTransformer.swift */,
 				226CC2302C330E6400F114B4 /* SampleRoutines.swift */,
+				22A5E7D72C35E3890024CD51 /* SystemColors.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -178,6 +180,7 @@
 				22CC80CB2C3464DA0070FFF7 /* RoutineIconView.swift */,
 				2282B9E52C3446A5004FECDB /* DonationView.swift */,
 				2282B9E32C34442D004FECDB /* AddRoutineView.swift */,
+				22C2ED402C35BCB100F597C0 /* AddRoutineIconView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,10 +321,11 @@
 				226CC2312C330E6400F114B4 /* SampleRoutines.swift in Sources */,
 				224CA03B2C321EEE0096F094 /* RoutineListView.swift in Sources */,
 				224CA03D2C321EEE0096F094 /* Step.swift in Sources */,
+				22C2ED412C35BCB100F597C0 /* AddRoutineIconView.swift in Sources */,
 				224CA0652C321FDD0096F094 /* Routine.swift in Sources */,
 				226CC23A2C33523D00F114B4 /* PreviewSampleData.swift in Sources */,
+				22A5E7D82C35E3890024CD51 /* SystemColors.swift in Sources */,
 				22CC80D42C3472ED0070FFF7 /* EditRoutineView.swift in Sources */,
-				226CC2352C333A0D00F114B4 /* UIColorValueTransformer.swift in Sources */,
 				224CA0392C321EEE0096F094 /* RoutinesApp.swift in Sources */,
 				22CC80CE2C346DDC0070FFF7 /* RoutineStepView.swift in Sources */,
 				22CC80D02C346DF40070FFF7 /* RoutineStepListView.swift in Sources */,

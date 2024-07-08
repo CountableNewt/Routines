@@ -40,7 +40,7 @@ struct RoutineListView: View {
             .navigationTitle("Routines")
             .sheet(isPresented: $addRoutineIsPresented) {
                 NavigationStack {
-                    AddRoutineView(isPresented: $addRoutineIsPresented)
+                    AddRoutineView(routine: Routine(), isPresented: $addRoutineIsPresented)
                         .navigationTitle("Add Routine")
                         .navigationBarTitleDisplayMode(.inline)
                         .presentationDetents([.medium, .large])

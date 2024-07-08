@@ -64,7 +64,7 @@ struct RoutineStepListView: View {
         }
         .sheet(isPresented: $editRoutineViewIsPresented) {
             NavigationStack {
-                EditRoutineView(isPresented: $editRoutineViewIsPresented)
+                EditRoutineView(routine: routine, isPresented: $editRoutineViewIsPresented)
                     .navigationTitle("Edit Routine")
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {

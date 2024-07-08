@@ -11,13 +11,14 @@ import SwiftUI
 
 struct AddRoutineView: View {
     @Environment(\.modelContext) var modelContext
+    var routine: Routine
     @Binding var isPresented: Bool
     
     var body: some View {
-        Text("Add Routine")
+        EditRoutineView(routine: routine, isPresented: $isPresented)
     }
 }
 
 #Preview {
-    AddRoutineView(isPresented: .constant(true))
+    AddRoutineView(routine: SampleRoutines.routines[0], isPresented: .constant(true))
 }
