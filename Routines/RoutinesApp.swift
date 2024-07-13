@@ -15,7 +15,6 @@ struct RoutinesApp: App {
         WindowGroup {
             RoutineListView()
         }
-        .modelContainer(for: Step.self)
         .modelContainer(for: Routine.self)
     }
 }

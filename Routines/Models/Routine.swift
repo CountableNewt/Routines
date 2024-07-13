@@ -9,19 +9,29 @@ import SwiftData
 import SwiftUI
 
 @Model
-final class Routine: Identifiable {
-    var id = UUID()
+class Routine {
     var name: String
-    var routineStartHour: Int
-    var routineStartMinute: Int
+    var startHour: Int
+    var startMinute: Int
     var iconColor: String
     var iconSymbol: String
-    var steps: [Step]
+    @Relationship(deleteRule: .cascade) var steps = [Step]()
     
-    init(name: String = "New Routine", routineStartHour: Int = 0, routineStartMinute: Int = 0, iconColor: String = SystemColors.blue.rawValue, iconSymbol: String = "list.bullet" , steps: [Step] = []) {
+    init(name: String = "New Routine", startHour: Int = 0, startMinute: Int = 0, iconColor: String = SystemColors.blue.rawValue, iconSymbol: String = "list.bullet") {
         self.name = name
-        self.routineStartHour = routineStartHour
-        self.routineStartMinute = routineStartMinute
+        self.startHour = startHour
+        self.startMinute = startMinute
+        self.iconColor = iconColor
+        self.iconSymbol = iconSymbol
+    }
+    
+    // This is really only used for SampleRoutines to add steps at initialization
+    // This currently isn't how the user flow will actually work, routines are created with empty steps arrays, then the steps are added later
+    // I will work on making the user flow smoother in later iterations of the app
+    init(name: String = "New Routine", startHour: Int = 0, startMinute: Int = 0, iconColor: String = SystemColors.blue.rawValue, iconSymbol: String = "list.bullet", steps: [Step] = [Step]()) {
+        self.name = name
+        self.startHour = startHour
+        self.startMinute = startMinute
         self.iconColor = iconColor
         self.iconSymbol = iconSymbol
         self.steps = steps
@@ -56,5 +66,9 @@ final class Routine: Identifiable {
         default:
             return Color.blue
         }
+    }
+    
+    func getTime() -> DateComponents {
+        return DateComponents(hour: self.startHour, minute: self.startMinute)
     }
 }

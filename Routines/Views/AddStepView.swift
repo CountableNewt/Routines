@@ -9,13 +9,18 @@ import Foundation
 import SwiftUI
 
 struct AddStepView: View {
+    @Binding var newStep: String
     @Binding var isPresented: Bool
     
     var body: some View {
-        Text("Add Step")
+        Form {
+            Section("Name") {
+                TextField("Step", text: $newStep)
+            }
+        }
     }
 }
 
 #Preview {
-    AddStepView(isPresented: .constant(true))
+    AddStepView(newStep: .constant(""), isPresented: .constant(true))
 }

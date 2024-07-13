@@ -8,8 +8,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class Step: Identifiable {
-    var id = UUID()
+class Step {
     var name: String
     var isComplete = false
     

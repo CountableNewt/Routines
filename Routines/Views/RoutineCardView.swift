@@ -31,7 +31,7 @@ struct RoutineCardView: View {
                 Image(systemName: "list.bullet")
                 Text("\(routine.steps.count) steps")
                 Spacer()
-                Text("\(routine.routineStartHour):\(routine.routineStartMinute)")
+                Text("\(routine.getTime().formattedTime())")
                 Image(systemName: "clock")
             }
             .padding(.leading)

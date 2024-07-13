@@ -9,60 +9,35 @@ import SwiftUI
 import SwiftData
 
 struct RoutineListView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query(sort: [SortDescriptor(\Routine.routineStartHour, order: .forward)]) private var routines: [Routine]
+    @Environment(\.modelContext) var modelContext
+    @Query(sort: [SortDescriptor(\Routine.startHour, order: .forward)]) var routines: [Routine]
     @State var addRoutineIsPresented = false
     @State var donationIsPresented = false
+    @State var newRoutine: Routine?
 
     var body: some View {
         NavigationStack {
-            List(routines) { routine in
-                NavigationLink(destination: RoutineStepListView(routine: routine)) {
-                    RoutineCardView(routine: routine)
+            List {
+                ForEach(routines) { routine in
+                    NavigationLink(destination: RoutineStepListView(routine: routine)) {
+                        RoutineCardView(routine: routine)
+                    }
                 }
+                .onDelete(perform: deleteRoutine)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
+                    Button("Donate", systemImage: "heart.circle", action: {
                         donationIsPresented = true
-                    }) {
-                        Image(systemName: "heart.circle")
-                    }
+                    })
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        addRoutineIsPresented = true
-                    }) {
-                        Image(systemName: "plus")
-                    }
+                    Button("Add Routine", systemImage: "plus", action: {
+                        addRoutine()
+                    })
                 }
             }
             .navigationTitle("Routines")
-            .sheet(isPresented: $addRoutineIsPresented) {
-                NavigationStack {
-                    AddRoutineView(routine: Routine(), isPresented: $addRoutineIsPresented)
-                        .navigationTitle("Add Routine")
-                        .navigationBarTitleDisplayMode(.inline)
-                        .presentationDetents([.medium, .large])
-                        .presentationDragIndicator(.visible)
-                        .toolbar {
-                            ToolbarItem(placement: .cancellationAction) {
-                                Button(action: {
-                                    addRoutineIsPresented = false
-                                }) {
-                                    Text("Cancel")
-                                }
-                            }
-                            ToolbarItem(placement: .confirmationAction) {
-                                Button(action: {
-                                    addRoutineIsPresented = false
-                                }) {
-                                    Text("Done")
-                                }
-                            }
-                        }
-                }
-            }
             .sheet(isPresented: $donationIsPresented) {
                 NavigationStack {
                     DonationView(isPresented: $donationIsPresented)
@@ -85,6 +60,44 @@ struct RoutineListView: View {
                         }
                 }
             }
+            .sheet(isPresented: $addRoutineIsPresented) {
+                NavigationStack {
+                    EditRoutineView(routine: newRoutine ?? Routine(), isPresented: $addRoutineIsPresented)
+                        .navigationTitle("New Routine")
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .cancellationAction) {
+                                Button(action: {
+                                    modelContext.delete(newRoutine ?? Routine())
+                                    addRoutineIsPresented = false
+                                }) {
+                                    Text("Cancel")
+                                }
+                            }
+                            ToolbarItem(placement: .confirmationAction) {
+                                Button(action: {
+                                    addRoutineIsPresented = false
+                                }) {
+                                    Text("Done")
+                                }
+                            }
+                        }
+                }
+            }
+        }
+    }
+    
+    func addRoutine() {
+        var routine = Routine()
+        modelContext.insert(routine)
+        newRoutine = routine
+        addRoutineIsPresented = true
+    }
+    
+    func deleteRoutine(_ indexSet: IndexSet) {
+        for index in indexSet {
+            let routine = routines[index]
+            modelContext.delete(routine)
         }
     }
 }

@@ -10,13 +10,13 @@ import SwiftUI
 
 struct SampleRoutines {
     static var routines: [Routine] = [
-        Routine(name: "Morning Routine", routineStartHour: 6, iconColor: SystemColors.yellow.rawValue, iconSymbol: "sun.horizon", steps: [
+        Routine(name: "Morning Routine", startHour: 6, startMinute: 0, iconColor: SystemColors.yellow.rawValue, iconSymbol: "sun.horizon", steps: [
             Step(name: "Train"),
             Step(name: "Shower"),
             Step(name: "Brush Teeth"),
             Step(name: "Weigh-In")
         ]),
-        Routine(name: "Evening Routine", routineStartHour: 21, iconColor: SystemColors.purple.rawValue, iconSymbol: "moon.zzz", steps: [
+        Routine(name: "Evening Routine", startHour: 21, startMinute: 0, iconColor: SystemColors.purple.rawValue, iconSymbol: "moon.zzz", steps: [
             Step(name: "Yoga"),
             Step(name: "Journal"),
             Step(name: "Meditation"),
