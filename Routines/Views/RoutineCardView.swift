@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import SwiftData
 
 struct RoutineCardView: View {
     var routine: Routine

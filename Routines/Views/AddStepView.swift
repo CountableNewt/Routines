@@ -20,7 +20,3 @@ struct AddStepView: View {
         }
     }
 }
-
-#Preview {
-    AddStepView(newStep: .constant(""), isPresented: .constant(true))
-}

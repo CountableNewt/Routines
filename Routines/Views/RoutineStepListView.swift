@@ -15,12 +15,30 @@ struct RoutineStepListView: View {
     @State var newStepName = ""
     
     var body: some View {
+        HStack {
+            Image(systemName: "clock")
+            Text(routine.getTime().formattedTime())
+            Spacer()
+        }
+        .padding(.leading)
         NavigationStack {
                 List {
                     ForEach(routine.steps) { step in
-                        Text(step.name)
+                        HStack {
+                            Button(action: { step.isComplete.toggle() }) {
+                                let systemName = step.isComplete ? "checkmark.circle.fill" : "circle"
+                                Image(systemName: systemName)
+                            }
+                            Text(step.name)
+                        }
                     }
                     .onDelete(perform: deleteStep)
+                    Button(action: addStep) {
+                        HStack {
+                            TextField("Quick Add Step", text: $newStepName)
+                            Image(systemName: "plus.circle.fill")
+                        }
+                    }
                 }
                 .navigationTitle(routine.name)
                 .toolbar {
@@ -105,12 +123,9 @@ struct RoutineStepListView: View {
         
         withAnimation {
             let newStep = Step(name: newStepName)
-            routine.steps.append(newStep)
             newStepName = ""
+            routine.steps.append(newStep)
         }
     }
 }
 
-#Preview {
-    RoutineStepListView(routine: SampleRoutines.routines[0])
-}

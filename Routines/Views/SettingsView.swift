@@ -8,14 +8,10 @@
 import Foundation
 import SwiftUI
 
-struct DonationView: View {
+struct SettingsView: View {
     @Binding var isPresented: Bool
     
     var body: some View {
-        Text("DonationView")
+        Text("SettingsView")
     }
-}
-
-#Preview {
-    DonationView(isPresented: .constant(true))
 }

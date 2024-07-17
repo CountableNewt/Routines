@@ -12,7 +12,7 @@ struct RoutineListView: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: [SortDescriptor(\Routine.startHour, order: .forward)]) var routines: [Routine]
     @State var addRoutineIsPresented = false
-    @State var donationIsPresented = false
+    @State var settingsIsPresented = false
     @State var newRoutine: Routine?
 
     var body: some View {
@@ -27,8 +27,8 @@ struct RoutineListView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Donate", systemImage: "heart.circle", action: {
-                        donationIsPresented = true
+                    Button("Donate", systemImage: "gear", action: {
+                        settingsIsPresented = true
                     })
                 }
                 ToolbarItem(placement: .topBarTrailing) {
@@ -38,21 +38,21 @@ struct RoutineListView: View {
                 }
             }
             .navigationTitle("Routines")
-            .sheet(isPresented: $donationIsPresented) {
+            .sheet(isPresented: $settingsIsPresented) {
                 NavigationStack {
-                    DonationView(isPresented: $donationIsPresented)
-                        .navigationTitle("Donate")
+                    SettingsView(isPresented: $settingsIsPresented)
+                        .navigationTitle("Settings")
                         .toolbar {
                             ToolbarItem(placement: .cancellationAction) {
                                 Button(action: {
-                                    donationIsPresented = false
+                                    settingsIsPresented = false
                                 }) {
                                     Text("Cancel")
                                 }
                             }
                             ToolbarItem(placement: .confirmationAction) {
                                 Button(action: {
-                                    donationIsPresented = false
+                                    settingsIsPresented = false
                                 }) {
                                     Text("Done")
                                 }
@@ -88,7 +88,7 @@ struct RoutineListView: View {
     }
     
     func addRoutine() {
-        var routine = Routine()
+        let routine = Routine()
         modelContext.insert(routine)
         newRoutine = routine
         addRoutineIsPresented = true
