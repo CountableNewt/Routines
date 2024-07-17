@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  RoutineListView.swift
 //  Routines
 //
 //  Created by Sam Clemente on 6/30/24.
@@ -10,7 +10,7 @@ import SwiftData
 
 struct RoutineListView: View {
     @Environment(\.modelContext) var modelContext
-    @Query(sort: [SortDescriptor(\Routine.startHour, order: .forward)]) var routines: [Routine]
+    @Query(sort: [SortDescriptor(\Routine.time, order: .forward)]) var routines: [Routine]
     @State var addRoutineIsPresented = false
     @State var settingsIsPresented = false
     @State var newRoutine: Routine?
@@ -62,26 +62,19 @@ struct RoutineListView: View {
             }
             .sheet(isPresented: $addRoutineIsPresented) {
                 NavigationStack {
-                    EditRoutineView(routine: newRoutine ?? Routine(), isPresented: $addRoutineIsPresented)
-                        .navigationTitle("New Routine")
-                        .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                            ToolbarItem(placement: .cancellationAction) {
-                                Button(action: {
-                                    modelContext.delete(newRoutine ?? Routine())
-                                    addRoutineIsPresented = false
-                                }) {
-                                    Text("Cancel")
-                                }
-                            }
-                            ToolbarItem(placement: .confirmationAction) {
-                                Button(action: {
-                                    addRoutineIsPresented = false
-                                }) {
-                                    Text("Done")
-                                }
-                            }
+                    EditRoutineView(routine: newRoutine ?? Routine(), onDismiss: { tempRoutine in
+                        modelContext.delete(newRoutine ?? Routine())
+                        addRoutineIsPresented = false
+                    }, onSave: { tempRoutine in
+                        if let routine = newRoutine {
+                            routine.name = tempRoutine.name
+                            routine.time = tempRoutine.time
+                            routine.iconSymbol = tempRoutine.iconSymbol
+                            routine.iconColor = tempRoutine.iconColor
                         }
+                        addRoutineIsPresented = false
+                    })
+                        .navigationTitle("New Routine")
                 }
             }
         }
@@ -100,9 +93,4 @@ struct RoutineListView: View {
             modelContext.delete(routine)
         }
     }
-}
-
-#Preview {
-    RoutineListView()
-        .modelContainer(previewContainer)
 }

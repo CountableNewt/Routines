@@ -21,7 +21,3 @@ struct RoutineIconView: View {
             )
     }
 }
-
-#Preview {
-    RoutineIconView(routine: SampleRoutines.routines[0])
-}

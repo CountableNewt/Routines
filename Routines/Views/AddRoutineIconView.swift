@@ -16,7 +16,3 @@ struct AddRoutineIconView: View {
         Text("Icon Symbol")
     }
 }
-
-#Preview {
-    AddRoutineIconView(iconColor: .blue, iconSymbol: "plus")
-}

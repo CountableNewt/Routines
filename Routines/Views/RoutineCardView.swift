@@ -30,15 +30,11 @@ struct RoutineCardView: View {
                 Image(systemName: "list.bullet")
                 Text("\(routine.steps.count) steps")
                 Spacer()
-                Text("\(routine.getTime().formattedTime())")
+                Text("\(routine.timeToString())")
                 Image(systemName: "clock")
             }
             .padding(.leading)
             .padding(.trailing)
         }
     }
-}
-
-#Preview {
-    RoutineCardView(routine: SampleRoutines.routines[0])
 }

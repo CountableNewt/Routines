@@ -10,32 +10,37 @@ import SwiftUI
 
 struct EditRoutineView: View {
     @Bindable var routine: Routine
-    @Binding var isPresented: Bool
-    @State var routineTime = Date()
+    @State private var tempRoutine: Routine
     let circleButtonSize = 45.5
+    var onDismiss: (Routine) -> Void
+    var onSave: (Routine) -> Void
+    
+    init(routine: Routine, onDismiss: @escaping (Routine) -> Void, onSave: @escaping (Routine) -> Void) {
+        self.routine = routine
+        _tempRoutine = State(initialValue: routine.copy())
+        self.onDismiss = onDismiss
+        self.onSave = onSave
+    }
     
     var body: some View {
         Form {
             Section("Name") {
-                TextField("Routine Name", text: $routine.name)
+                TextField("Routine Name", text: $tempRoutine.name)
             }
             Section("Time") {
-                DatePicker("Routine Time", selection: $routineTime, displayedComponents: .hourAndMinute)
+                DatePicker("Routine Time", selection: $tempRoutine.time, displayedComponents: .hourAndMinute)
                     .datePickerStyle(.compact)
-                    .onSubmit {
-                        routine.startHour = Calendar.current.component(.hour, from: routineTime)
-                        routine.startMinute = Calendar.current.component(.minute, from: routineTime)
-                    }
             }
             Section("Icon") {
                 HStack {
                     Spacer()
                     Circle()
-                        .fill(routine.getIconColor())
+                        .fill(tempRoutine.getIconColor())
                         .frame(width: 80)
                         .overlay(
-                            Image(systemName: routine.iconSymbol)
+                            Image(systemName: tempRoutine.iconSymbol)
                                 .font(.largeTitle)
+                                .foregroundStyle(.white)
                         )
                     Spacer()
                 }
@@ -45,7 +50,7 @@ struct EditRoutineView: View {
                     HStack {
                         ForEach(SystemColors.allCases, id: \.self) { color in
                             Button(action: {
-                                routine.iconColor = color.rawValue
+                                tempRoutine.iconColor = color.rawValue
                             }) {
                                 Circle()
                                     .fill(color.color)
@@ -63,7 +68,7 @@ struct EditRoutineView: View {
                         HStack {
                             ForEach(list.iconList, id: \.self) { icon in
                                 Button(action: {
-                                    routine.iconSymbol = icon
+                                    tempRoutine.iconSymbol = icon
                                 }) {
                                     Circle()
                                         .fill(.gray)
@@ -76,6 +81,23 @@ struct EditRoutineView: View {
                             }
                         }
                     }
+                }
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button(action: {
+                    onDismiss(tempRoutine)
+                }) {
+                    Text("Cancel")
+                }
+            }
+            ToolbarItem(placement: .confirmationAction) {
+                Button(action: {
+                    onSave(tempRoutine)
+                }) {
+                    Text("Done")
                 }
             }
         }

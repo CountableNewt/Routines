@@ -9,15 +9,16 @@ import Foundation
 import SwiftUI
 
 struct RoutineStepListView: View {
+    @Environment(\.modelContext) var modelContext
     @Bindable var routine: Routine
-    @State var editRoutineViewIsPresented = false
-    @State var addStepViewIsPresented = false
-    @State var newStepName = ""
+    @State private var editRoutineViewIsPresented = false
+    @State private var addStepViewIsPresented = false
+    @State private var newStepName = ""
     
     var body: some View {
         HStack {
             Image(systemName: "clock")
-            Text(routine.getTime().formattedTime())
+            Text(routine.timeToString())
             Spacer()
         }
         .padding(.leading)
@@ -28,6 +29,7 @@ struct RoutineStepListView: View {
                             Button(action: { step.isComplete.toggle() }) {
                                 let systemName = step.isComplete ? "checkmark.circle.fill" : "circle"
                                 Image(systemName: systemName)
+                                    .foregroundStyle(routine.getIconColor())
                             }
                             Text(step.name)
                         }
@@ -35,8 +37,9 @@ struct RoutineStepListView: View {
                     .onDelete(perform: deleteStep)
                     Button(action: addStep) {
                         HStack {
-                            TextField("Quick Add Step", text: $newStepName)
+                            TextField("Quick Add", text: $newStepName)
                             Image(systemName: "plus.circle.fill")
+                                .foregroundStyle(routine.getIconColor())
                         }
                     }
                 }
@@ -49,16 +52,16 @@ struct RoutineStepListView: View {
                         Button(action: {
                             editRoutineViewIsPresented = true
                         }) {
-                            Image(systemName: "ellipsis.circle")
+                            Image(systemName: "pencil")
                         }
                     }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button(action: {
-                            addStepViewIsPresented = true
-                        }) {
-                            Image(systemName: "plus")
-                        }
-                    }
+//                    ToolbarItem(placement: .topBarTrailing) {
+//                        Button(action: {
+//                            addStepViewIsPresented = true
+//                        }) {
+//                            Image(systemName: "plus")
+//                        }
+//                    }
                 }
                 .sheet(isPresented: $addStepViewIsPresented) {
                     NavigationStack {
@@ -87,26 +90,18 @@ struct RoutineStepListView: View {
                 }
                 .sheet(isPresented: $editRoutineViewIsPresented) {
                     NavigationStack {
-                        EditRoutineView(routine: routine, isPresented: $editRoutineViewIsPresented)
+                        EditRoutineView(routine: routine, onDismiss: { tempRoutine in
+                            modelContext.delete(tempRoutine)
+                            editRoutineViewIsPresented = false
+                        }, onSave: { tempRoutine in
+                            routine.name = tempRoutine.name
+                            routine.time = tempRoutine.time
+                            routine.iconSymbol = tempRoutine.iconSymbol
+                            routine.iconColor = tempRoutine.iconColor
+                            modelContext.delete(tempRoutine)
+                            editRoutineViewIsPresented = false
+                        })
                             .navigationTitle("Edit Routine")
-                            .navigationBarTitleDisplayMode(.inline)
-                            .toolbar {
-                                ToolbarItem(placement: .cancellationAction) {
-                                    Button(action: {
-                                        editRoutineViewIsPresented = false
-                                    }) {
-                                        Text("Cancel")
-                                    }
-                                }
-                                ToolbarItem(placement: .confirmationAction) {
-                                    Button(action: {
-                                        editRoutineViewIsPresented = false
-                                    }) {
-                                        Text("Done")
-                                    }
-                                }
-                            }
-                        
                     }
                 }
         }
@@ -114,6 +109,7 @@ struct RoutineStepListView: View {
     
     func deleteStep(_ indexSet: IndexSet) {
         for index in indexSet {
+            modelContext.delete(routine.steps[index])
             routine.steps.remove(at: index)
         }
     }
@@ -124,6 +120,7 @@ struct RoutineStepListView: View {
         withAnimation {
             let newStep = Step(name: newStepName)
             newStepName = ""
+            modelContext.insert(newStep)
             routine.steps.append(newStep)
         }
     }

@@ -9,29 +9,24 @@ import SwiftData
 import SwiftUI
 
 @Model
-class Routine {
+class Routine: Identifiable {
+    var id = UUID()
     var name: String
-    var startHour: Int
-    var startMinute: Int
+    var time: Date
     var iconColor: String
     var iconSymbol: String
     @Relationship(deleteRule: .cascade) var steps = [Step]()
     
-    init(name: String = "New Routine", startHour: Int = 0, startMinute: Int = 0, iconColor: String = SystemColors.blue.rawValue, iconSymbol: String = "list.bullet") {
+    init(name: String = "New Routine", time: Date = Date(), iconColor: String = SystemColors.blue.rawValue, iconSymbol: String = "list.bullet") {
         self.name = name
-        self.startHour = startHour
-        self.startMinute = startMinute
+        self.time = time
         self.iconColor = iconColor
         self.iconSymbol = iconSymbol
     }
-    
-    // This is really only used for SampleRoutines to add steps at initialization
-    // This currently isn't how the user flow will actually work, routines are created with empty steps arrays, then the steps are added later
-    // I will work on making the user flow smoother in later iterations of the app
-    init(name: String = "New Routine", startHour: Int = 0, startMinute: Int = 0, iconColor: String = SystemColors.blue.rawValue, iconSymbol: String = "list.bullet", steps: [Step] = [Step]()) {
+
+    init(name: String = "New Routine", time: Date = Date(), iconColor: String = SystemColors.blue.rawValue, iconSymbol: String = "list.bullet", steps: [Step] = [Step]()) {
         self.name = name
-        self.startHour = startHour
-        self.startMinute = startMinute
+        self.time = time
         self.iconColor = iconColor
         self.iconSymbol = iconSymbol
         self.steps = steps
@@ -68,7 +63,15 @@ class Routine {
         }
     }
     
-    func getTime() -> DateComponents {
-        return DateComponents(hour: self.startHour, minute: self.startMinute)
+    func timeToString() -> String {
+        let time = self.time
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        return dateFormatter.string(from: time)
+    }
+    
+    func copy() -> Routine {
+        let copy = Routine(name: self.name, time: self.time, iconColor: self.iconColor, iconSymbol: self.iconSymbol)
+        return copy
     }
 }
