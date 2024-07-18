@@ -17,6 +17,7 @@
 		224CA0562C321EEF0096F094 /* RoutinesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224CA0552C321EEF0096F094 /* RoutinesUITests.swift */; };
 		224CA0582C321EEF0096F094 /* RoutinesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224CA0572C321EEF0096F094 /* RoutinesUITestsLaunchTests.swift */; };
 		224CA0652C321FDD0096F094 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224CA0642C321FDD0096F094 /* Routine.swift */; };
+		227997072C498B3800D184BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227997062C498B3800D184BE /* AppDelegate.swift */; };
 		2282B9E62C3446A5004FECDB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282B9E52C3446A5004FECDB /* SettingsView.swift */; };
 		2282B9E82C34472A004FECDB /* RoutineCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282B9E72C34472A004FECDB /* RoutineCardView.swift */; };
 		22A5E7D82C35E3890024CD51 /* SystemColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E7D72C35E3890024CD51 /* SystemColors.swift */; };
@@ -60,6 +61,7 @@
 		224CA0552C321EEF0096F094 /* RoutinesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesUITests.swift; sourceTree = "<group>"; };
 		224CA0572C321EEF0096F094 /* RoutinesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		224CA0642C321FDD0096F094 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
+		227997062C498B3800D184BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2282B9E52C3446A5004FECDB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2282B9E72C34472A004FECDB /* RoutineCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCardView.swift; sourceTree = "<group>"; };
 		22A5E7D72C35E3890024CD51 /* SystemColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemColors.swift; sourceTree = "<group>"; };
@@ -120,7 +122,7 @@
 		224CA0372C321EEE0096F094 /* Routines */ = {
 			isa = PBXGroup;
 			children = (
-				224CA0382C321EEE0096F094 /* RoutinesApp.swift */,
+				227997052C498B1600D184BE /* Application */,
 				224CA0662C321FE10096F094 /* Models */,
 				226CC2362C333E6200F114B4 /* Views */,
 				224CA03E2C321EEF0096F094 /* Assets.xcassets */,
@@ -180,6 +182,15 @@
 				22C2ED402C35BCB100F597C0 /* AddRoutineIconView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		227997052C498B1600D184BE /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				224CA0382C321EEE0096F094 /* RoutinesApp.swift */,
+				227997062C498B3800D184BE /* AppDelegate.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +331,7 @@
 				224CA03D2C321EEE0096F094 /* Step.swift in Sources */,
 				22C2ED412C35BCB100F597C0 /* AddRoutineIconView.swift in Sources */,
 				224CA0652C321FDD0096F094 /* Routine.swift in Sources */,
+				227997072C498B3800D184BE /* AppDelegate.swift in Sources */,
 				22A5E7D82C35E3890024CD51 /* SystemColors.swift in Sources */,
 				22CC80D42C3472ED0070FFF7 /* EditRoutineView.swift in Sources */,
 				22BD7A092C3DD4B9004C04B9 /* DateComponents.swift in Sources */,
