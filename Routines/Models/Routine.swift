@@ -7,7 +7,6 @@
 import Foundation
 import SwiftData
 import SwiftUI
-import UserNotifications
 
 @Model
 class Routine: Identifiable {
@@ -79,27 +78,6 @@ class Routine: Identifiable {
     func resetSteps() {
         for step in steps {
             step.isComplete = false
-        }
-        
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
-            if granted {
-                print("Notification access granted")
-            } else {
-                print("Notification access denied")
-            }
-        }
-        
-        let content = UNMutableNotificationContent()
-        content.title = "\(self.name) has Reset!"
-        content.subtitle = "Time to get started!"
-        content.sound = UNNotificationSound.default
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request) { (error) in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-            }
         }
     }
 }

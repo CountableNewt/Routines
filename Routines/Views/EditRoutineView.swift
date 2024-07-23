@@ -62,25 +62,28 @@ struct EditRoutineView: View {
                 Text("Symbol")
                     .font(.headline)
                 ForEach(IconLists.allCases, id: \.self) { list in
-                    Text(list.rawValue)
-                        .font(.caption)
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(list.iconList, id: \.self) { icon in
-                                Button(action: {
-                                    tempRoutine.iconSymbol = icon
-                                }) {
-                                    Circle()
-                                        .fill(.gray)
-                                        .frame(width: circleButtonSize)
-                                        .overlay(
-                                            Image(systemName: icon)
-                                                .foregroundColor(.white)
-                                        )
+                    HStack {
+                        Text(list.rawValue)
+                            .font(.caption)
+                            .frame(width: 1.5 * circleButtonSize, height: circleButtonSize, alignment: .leading)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(list.iconList, id: \.self) { icon in
+                                    Button(action: {
+                                        tempRoutine.iconSymbol = icon
+                                    }) {
+                                        Circle()
+                                            .fill(.gray)
+                                            .frame(width: circleButtonSize)
+                                            .overlay(
+                                                Image(systemName: icon)
+                                                    .foregroundColor(.white)
+                                            )
+                                    }
                                 }
                             }
                         }
-                    }
+                   }
                 }
             }
         }

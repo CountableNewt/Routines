@@ -81,10 +81,10 @@ struct RoutineListView: View {
     }
     
     func addRoutine() {
+        addRoutineIsPresented = true
         let routine = Routine()
         modelContext.insert(routine)
         newRoutine = routine
-        addRoutineIsPresented = true
     }
     
     func deleteRoutine(_ indexSet: IndexSet) {
