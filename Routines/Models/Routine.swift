@@ -7,6 +7,7 @@
 import Foundation
 import SwiftData
 import SwiftUI
+import UserNotifications
 
 @Model
 class Routine: Identifiable {
@@ -79,5 +80,14 @@ class Routine: Identifiable {
         for step in steps {
             step.isComplete = false
         }
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Routine Reset"
+        content.body = "\(self.name) has been reset. Let's get started!"
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request)
     }
 }
