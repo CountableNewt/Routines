@@ -12,11 +12,12 @@ import UserNotifications
 @main
 struct RoutinesApp: App {
     func promptForNotifications() {
-        DispatchQueue.main.async {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.sound, .alert, .badge]) { success, error in
-                if let error = error {
-                    print("Error handling notifications \(error.localizedDescription)")
-                }
+        Task {
+            let currentCenter = UNUserNotificationCenter.current()
+            do {
+                let _ = try await currentCenter.requestAuthorization(options: [.sound, .alert, .badge])
+            } catch {
+                print("Error handling notifications \(error.localizedDescription)")
             }
         }
     }
@@ -24,7 +25,7 @@ struct RoutinesApp: App {
     var body: some Scene {
         WindowGroup {
             RoutineListView()
-//                .onAppear(perform: promptForNotifications)
+                .onAppear(perform: promptForNotifications)
         }
         .modelContainer(for: Routine.self)
     }
