@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+/// This enum is used to relate `Color` objects to `String` to be used for different cases in the app. The `rawValue` of each case is used for storing in `Routine.iconColor`. The enum conforms to `CaseIterable` and `Identifiable` for use in `ForEach()` views in the interface. `SystemColors.color` is used to generate the color picker UI in ``EditRoutineView``.
 enum SystemColors: String, CaseIterable, Identifiable {
     case red = ".red"
     case orange = ".orange"

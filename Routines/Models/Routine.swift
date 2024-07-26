@@ -4,17 +4,19 @@
 //
 //  Created by Sam Clemente on 6/30/24.
 //
+
 import Foundation
 import SwiftData
 import SwiftUI
 import UserNotifications
 
 @Model
+/// This is the main model for the application. Routines are the basis of everything that happens in the app and are used to organize steps into logical groups to be performed at a certain time
 class Routine: Identifiable {
     var id = UUID()
     var name: String
     var time: Date
-    var iconColor: String
+    var iconColor: String // Stored as a string because Color is not encodable for persistence with SwiftData
     var iconSymbol: String
     @Relationship(deleteRule: .cascade) var steps = [Step]()
     
@@ -33,6 +35,18 @@ class Routine: Identifiable {
         self.steps = steps
     }
     
+    
+    /// Relates the `String` property `iconColor` to a `Color` from SwiftUI to be used in the interface
+    ///
+    /// ```swift
+    /// let routine = Routine()
+    ///
+    /// // Code
+    ///
+    /// Circle().fillColor(routine.getIconColor())
+    /// ```
+    ///
+    /// - Returns: A `Color` corresponding to the value of `iconColor`
     func getIconColor() -> Color {
         switch self.iconColor {
         case ".red":
@@ -64,6 +78,18 @@ class Routine: Identifiable {
         }
     }
     
+    
+    /// Takes the `time` parameter and converts it to a `String` to be used in the interface
+    ///
+    /// ```swift
+    /// let routine = Routine()
+    ///
+    /// // Code
+    ///
+    /// Text(routine.timeToString())
+    /// ```
+    ///
+    /// - Returns: A string representation of the time
     func timeToString() -> String {
         let time = self.time
         let dateFormatter = DateFormatter()
@@ -71,11 +97,35 @@ class Routine: Identifiable {
         return dateFormatter.string(from: time)
     }
     
+    
+    /// Makes a copy of the current values of a `Routine` except for the `id` and `steps`
+    ///
+    /// The copy method prevents variables from refencing the same `Routine`. Because `Routine` is a class, the variable just stores a pointer to the `Routine` object. This method is used when you want a separate instance of a `Routine` with the same values.
+    ///
+    /// ```swift
+    /// let routine = Routine()
+    ///
+    /// // Code
+    ///
+    /// let routine2 = routine1.copy()
+    /// ```
+    /// - Returns: A new `Routine` object with the same values as `self`
     func copy() -> Routine {
         let copy = Routine(name: self.name, time: self.time, iconColor: self.iconColor, iconSymbol: self.iconSymbol)
         return copy
     }
     
+    /// Resets all of the steps in a routine to their incomplete state
+    ///
+    /// This method iterates through the step list and sets `Step.isComplete` to `false` on all steps in the array. Then it generates a local notification to let the user know that the routine has been reset.
+    ///
+    /// ```swift
+    /// let routine = Routine()
+    ///
+    /// // Code
+    ///
+    /// routine.resetSteps()
+    /// ```
     func resetSteps() {
         for step in steps {
             step.isComplete = false

@@ -9,7 +9,8 @@ import Foundation
 
 // NOTE: You've gotten to "shuffle" in the list of SF Symbols
 
-enum IconLists: String, CaseIterable, Identifiable {
+/// This enum is used to store all of the various names of he SF Symbols used in the icon picker to be used in `Routine.iconSymbol`. The `rawValue` is used as the label for the category in the interface. The enum also conforms to `CaseIterable` and `Identifiable` to be used in `ForEach` views in the interface. The enum also conforms to `Sequence` for testing purposes.
+enum IconLists: String, CaseIterable, Identifiable, Sequence {
     case time = "Time"
     case lists = "Lists"
     case drawing = "Drawing"
@@ -26,6 +27,11 @@ enum IconLists: String, CaseIterable, Identifiable {
     case misc = "Misc."
     
     var id: IconLists { self }
+    
+    /// Required for conformance to ``Sequence``
+    func makeIterator() -> IndexingIterator<[String]> {
+        return iconList.makeIterator()
+    }
     
     var iconList: [String] {
         switch self {
