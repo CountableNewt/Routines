@@ -38,6 +38,7 @@ struct RoutineStepListView: View {
                     Button(action: addStep) {
                         HStack {
                             TextField("Quick Add", text: $newStepName)
+                                .onSubmit(addStep)
                             Image(systemName: "plus.circle.fill")
                                 .foregroundStyle(routine.getIconColor())
                         }
