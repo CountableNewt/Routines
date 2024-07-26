@@ -17,14 +17,12 @@
 		224CA0562C321EEF0096F094 /* RoutinesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224CA0552C321EEF0096F094 /* RoutinesUITests.swift */; };
 		224CA0582C321EEF0096F094 /* RoutinesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224CA0572C321EEF0096F094 /* RoutinesUITestsLaunchTests.swift */; };
 		224CA0652C321FDD0096F094 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224CA0642C321FDD0096F094 /* Routine.swift */; };
-		227997072C498B3800D184BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227997062C498B3800D184BE /* AppDelegate.swift */; };
 		2282B9E62C3446A5004FECDB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282B9E52C3446A5004FECDB /* SettingsView.swift */; };
 		2282B9E82C34472A004FECDB /* RoutineCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282B9E72C34472A004FECDB /* RoutineCardView.swift */; };
 		22A5E7D82C35E3890024CD51 /* SystemColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E7D72C35E3890024CD51 /* SystemColors.swift */; };
 		22BD7A092C3DD4B9004C04B9 /* DateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BD7A082C3DD4B9004C04B9 /* DateComponents.swift */; };
 		22C2ED412C35BCB100F597C0 /* AddRoutineIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C2ED402C35BCB100F597C0 /* AddRoutineIconView.swift */; };
 		22CC80CC2C3464DA0070FFF7 /* RoutineIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC80CB2C3464DA0070FFF7 /* RoutineIconView.swift */; };
-		22CC80CE2C346DDC0070FFF7 /* RoutineStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC80CD2C346DDC0070FFF7 /* RoutineStepView.swift */; };
 		22CC80D02C346DF40070FFF7 /* RoutineStepListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC80CF2C346DF40070FFF7 /* RoutineStepListView.swift */; };
 		22CC80D22C346FF10070FFF7 /* AddStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC80D12C346FF10070FFF7 /* AddStepView.swift */; };
 		22CC80D42C3472ED0070FFF7 /* EditRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC80D32C3472ED0070FFF7 /* EditRoutineView.swift */; };
@@ -61,7 +59,6 @@
 		224CA0552C321EEF0096F094 /* RoutinesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesUITests.swift; sourceTree = "<group>"; };
 		224CA0572C321EEF0096F094 /* RoutinesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		224CA0642C321FDD0096F094 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
-		227997062C498B3800D184BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		227997082C49B24E00D184BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2282B9E52C3446A5004FECDB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2282B9E72C34472A004FECDB /* RoutineCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCardView.swift; sourceTree = "<group>"; };
@@ -69,7 +66,6 @@
 		22BD7A082C3DD4B9004C04B9 /* DateComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateComponents.swift; sourceTree = "<group>"; };
 		22C2ED402C35BCB100F597C0 /* AddRoutineIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineIconView.swift; sourceTree = "<group>"; };
 		22CC80CB2C3464DA0070FFF7 /* RoutineIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineIconView.swift; sourceTree = "<group>"; };
-		22CC80CD2C346DDC0070FFF7 /* RoutineStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineStepView.swift; sourceTree = "<group>"; };
 		22CC80CF2C346DF40070FFF7 /* RoutineStepListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineStepListView.swift; sourceTree = "<group>"; };
 		22CC80D12C346FF10070FFF7 /* AddStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStepView.swift; sourceTree = "<group>"; };
 		22CC80D32C3472ED0070FFF7 /* EditRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoutineView.swift; sourceTree = "<group>"; };
@@ -174,7 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				224CA03A2C321EEE0096F094 /* RoutineListView.swift */,
-				22CC80CD2C346DDC0070FFF7 /* RoutineStepView.swift */,
 				22CC80CF2C346DF40070FFF7 /* RoutineStepListView.swift */,
 				22CC80D32C3472ED0070FFF7 /* EditRoutineView.swift */,
 				22CC80D12C346FF10070FFF7 /* AddStepView.swift */,
@@ -190,7 +185,6 @@
 			isa = PBXGroup;
 			children = (
 				224CA0382C321EEE0096F094 /* RoutinesApp.swift */,
-				227997062C498B3800D184BE /* AppDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -333,12 +327,10 @@
 				224CA03D2C321EEE0096F094 /* Step.swift in Sources */,
 				22C2ED412C35BCB100F597C0 /* AddRoutineIconView.swift in Sources */,
 				224CA0652C321FDD0096F094 /* Routine.swift in Sources */,
-				227997072C498B3800D184BE /* AppDelegate.swift in Sources */,
 				22A5E7D82C35E3890024CD51 /* SystemColors.swift in Sources */,
 				22CC80D42C3472ED0070FFF7 /* EditRoutineView.swift in Sources */,
 				22BD7A092C3DD4B9004C04B9 /* DateComponents.swift in Sources */,
 				224CA0392C321EEE0096F094 /* RoutinesApp.swift in Sources */,
-				22CC80CE2C346DDC0070FFF7 /* RoutineStepView.swift in Sources */,
 				22CC80D02C346DF40070FFF7 /* RoutineStepListView.swift in Sources */,
 				22CC80CC2C3464DA0070FFF7 /* RoutineIconView.swift in Sources */,
 			);
@@ -502,7 +494,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0.0.1;
+				CURRENT_PROJECT_VERSION = 0.0.2;
 				DEVELOPMENT_ASSET_PATHS = "\"Routines/Preview Content\"";
 				DEVELOPMENT_TEAM = G39TU2R26A;
 				ENABLE_PREVIEWS = YES;
@@ -515,12 +507,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sam-clemente.Routines";
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sam-clemente.routines-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -538,7 +531,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0.0.1;
+				CURRENT_PROJECT_VERSION = 0.0.2;
 				DEVELOPMENT_ASSET_PATHS = "\"Routines/Preview Content\"";
 				DEVELOPMENT_TEAM = G39TU2R26A;
 				ENABLE_PREVIEWS = YES;
@@ -551,12 +544,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sam-clemente.Routines";
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sam-clemente.routines-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
