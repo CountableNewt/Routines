@@ -26,7 +26,10 @@ struct RoutineStepListView: View {
                 List {
                     ForEach(routine.steps) { step in
                         HStack {
-                            Button(action: { step.isComplete.toggle() }) {
+                            Button(action: {
+                                step.isComplete.toggle()
+                                routine.checkRoutineCompletion()
+                            }) {
                                 let systemName = step.isComplete ? "checkmark.circle.fill" : "circle"
                                 Image(systemName: systemName)
                                     .foregroundStyle(routine.getIconColor())

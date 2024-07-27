@@ -18,14 +18,7 @@ class Routine: Identifiable {
     var time: Date
     var iconColor: String // Stored as a string because Color is not encodable for persistence with SwiftData
     var iconSymbol: String
-    var isComplete: Bool {
-        for step in steps {
-            if !step.isComplete {
-                return false
-            }
-        }
-        return true
-    }
+    var isComplete: Bool = false
     @Relationship(deleteRule: .cascade) var steps = [Step]()
     
     init(name: String = "New Routine", time: Date = Date(), iconColor: String = SystemColors.blue.rawValue, iconSymbol: String = "list.bullet") {
@@ -139,6 +132,8 @@ class Routine: Identifiable {
             step.isComplete = false
         }
         
+        self.isComplete = false
+        
         let content = UNMutableNotificationContent()
         content.title = "Routine Reset"
         content.body = "\(self.name) has been reset. Let's get started!"
@@ -147,5 +142,16 @@ class Routine: Identifiable {
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request)
+    }
+    
+    func checkRoutineCompletion() {
+        var isComplete = true
+        for step in steps {
+            if !step.isComplete {
+                isComplete = false
+                break
+            }
+        }
+        self.isComplete = isComplete
     }
 }
