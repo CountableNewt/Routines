@@ -1,4 +1,4 @@
 
 /Routines.xcodeproj/project.xcworkspace/xcuserdata
-/Routines.xcodeproj/project.xcworkspace
-/Routines.xcodeproj/project.xcworkspace
+*.xcworkspace
+*.xcuserstate
