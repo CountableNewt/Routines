@@ -7,6 +7,8 @@
 	<key>NSUserNotificationUsageDescription</key>
 	<string>We need your permission to send notifcations when a routine starts</string>
 	<key>UIBackgroundModes</key>
-	<array/>
+	<array>
+		<string>com.sam-clemente.routines-app.reset-routines</string>
+	</array>
 </dict>
 </plist>

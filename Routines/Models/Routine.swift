@@ -36,6 +36,28 @@ class Routine: Identifiable {
         self.steps = steps
     }
     
+    static func resetRoutines() {
+        let routines = fetchRoutines()
+        for routine in routines {
+            routine.resetSteps()
+        }
+    }
+    
+    private static func fetchRoutines() -> [Routine] {
+        @Environment(\.modelContext) var modelContext
+        let now = Date()
+        let fiveMinutesBeforeNow = now.addingTimeInterval(-5 * 60)
+        let fiveMinutesAfterNow = now.addingTimeInterval(5 * 60)
+        
+        let descriptor = FetchDescriptor<Routine>(
+            predicate: #Predicate { routine in
+                fiveMinutesBeforeNow <= routine.time && routine.time <= fiveMinutesAfterNow
+            }
+        )
+        
+        let routines = try! modelContext.fetch(descriptor)
+        return routines
+    }
     
     /// Relates the `String` property `iconColor` to a `Color` from SwiftUI to be used in the interface
     ///
@@ -116,32 +138,6 @@ class Routine: Identifiable {
         return copy
     }
     
-    /// Resets all of the steps in a routine to their incomplete state
-    ///
-    /// This method iterates through the step list and sets `Step.isComplete` to `false` on all steps in the array. Then it generates a local notification to let the user know that the routine has been reset.
-    ///
-    /// ```swift
-    /// let routine = Routine()
-    ///
-    /// // Code
-    ///
-    /// routine.resetSteps()
-    /// ```
-    func resetSteps() {
-        for step in steps {
-            step.isComplete = false
-        }
-        
-        let content = UNMutableNotificationContent()
-        content.title = "Routine Reset"
-        content.body = "\(self.name) has been reset. Let's get started!"
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request)
-    }
-    
     func checkRoutineCompletion() {
         var isComplete = true
         
@@ -154,4 +150,33 @@ class Routine: Identifiable {
         
         self.isComplete = isComplete
     }
+    
+    /// Resets all of the steps in a routine to their incomplete state
+    ///
+    /// This method iterates through the step list and sets `Step.isComplete` to `false` on all steps in the array. Then it generates a local notification to let the user know that the routine has been reset.
+    ///
+    /// ```swift
+    /// let routine = Routine()
+    ///
+    /// // Code
+    ///
+    /// routine.resetSteps()
+    /// ```
+    private func resetSteps() {
+        for step in steps {
+            step.isComplete = false
+        }
+        
+        checkRoutineCompletion()
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Routine Reset"
+        content.body = "\(self.name) has been reset. Let's get started!"
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request)
+    }
+
 }

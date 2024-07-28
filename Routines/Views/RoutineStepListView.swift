@@ -51,9 +51,9 @@ struct RoutineStepListView: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         // Share Sheet [To Be Implemented]
-                        Button(action: routine.resetSteps) {
-                            Text("Reset Steps")
-                        }
+                       // Button(action: routine.resetSteps) {
+                       //     Text("Reset Steps")
+                       // }
                     }
                     ToolbarItem(placement: .topBarTrailing) {
                         Button(action: {
@@ -116,8 +116,10 @@ struct RoutineStepListView: View {
     
     func deleteStep(_ indexSet: IndexSet) {
         for index in indexSet {
+            print("Removing step: \(routine.steps[index].name)")
             modelContext.delete(routine.steps[index])
             routine.steps.remove(at: index)
+            print("Step removed")
         }
     }
     
@@ -129,6 +131,7 @@ struct RoutineStepListView: View {
             newStepName = ""
             modelContext.insert(newStep)
             routine.steps.append(newStep)
+            print("Added step: \(newStep.name)")
         }
     }
 }
