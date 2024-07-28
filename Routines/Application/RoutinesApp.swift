@@ -12,11 +12,24 @@ import BackgroundTasks
 
 @main
 struct RoutinesApp: App {
+    @Environment(\.scenePhase) private var scenePhase
     let taskIdentifier = "com.sam-clemente.routines-app.reset-routines"
     
-    init() {
-        registerBackgroundTasks()
-        print("Application Initialized")
+    var body: some Scene {
+        WindowGroup {
+            RoutineListView()
+                .onAppear(perform: promptForNotifications)
+        }
+        .modelContainer(for: Routine.self)
+        .onChange(of: scenePhase) {
+            switch scenePhase {
+            case .background: scheduleAppRefresh()
+            default: break
+            }
+        }
+        .backgroundTask(.appRefresh(taskIdentifier)) {
+            Routine.resetRoutines()
+        }
     }
     
     private func promptForNotifications() {
@@ -30,39 +43,11 @@ struct RoutinesApp: App {
         }
     }
     
-    var body: some Scene {
-        WindowGroup {
-            RoutineListView()
-                .onAppear(perform: promptForNotifications)
-        }
-        .modelContainer(for: Routine.self)
-    }
-    
-    private func registerBackgroundTasks() {
-        print("Registering Background Tasks")
-        BGTaskScheduler.shared.register(forTaskWithIdentifier: taskIdentifier, using: nil) { task in
-            self.handleAppRefresh(task: task as! BGAppRefreshTask)
-            print("Background Task \(taskIdentifier) Registered")
-        }
-    }
-    
-    private func handleAppRefresh(task: BGAppRefreshTask) {
-        print("Handling App Refresh")
-        scheduleAppRefresh()
-        let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 1
-        let _ = BackgroundOperation()
-        task.expirationHandler = {
-            queue.cancelAllOperations()
-        }
-    }
-    
     private func scheduleAppRefresh() {
         let request = BGAppRefreshTaskRequest(identifier: taskIdentifier)
-        request.earliestBeginDate = Date()
         do {
             try BGTaskScheduler.shared.submit(request)
-            print("Task scheduled for 15 minutes from now.")
+            print("Task scheduled.")
         } catch {
             print("Could not schedule app refresh: \(error.localizedDescription)")
         }
