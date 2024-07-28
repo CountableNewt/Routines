@@ -51,9 +51,6 @@ struct RoutineStepListView: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         // Share Sheet [To Be Implemented]
-                       // Button(action: routine.resetSteps) {
-                       //     Text("Reset Steps")
-                       // }
                     }
                     ToolbarItem(placement: .topBarTrailing) {
                         Button(action: {

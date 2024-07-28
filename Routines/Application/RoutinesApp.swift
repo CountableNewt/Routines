@@ -59,7 +59,7 @@ struct RoutinesApp: App {
     
     private func scheduleAppRefresh() {
         let request = BGAppRefreshTaskRequest(identifier: taskIdentifier)
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
+        request.earliestBeginDate = Date()
         do {
             try BGTaskScheduler.shared.submit(request)
             print("Task scheduled for 15 minutes from now.")
