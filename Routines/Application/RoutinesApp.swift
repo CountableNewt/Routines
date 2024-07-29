@@ -13,6 +13,7 @@ import BackgroundTasks
 @main
 struct RoutinesApp: App {
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.modelContext) private var modelContext
     let taskIdentifier = "com.sam-clemente.routines-app.reset-routines"
     
     var body: some Scene {
@@ -28,8 +29,30 @@ struct RoutinesApp: App {
             }
         }
         .backgroundTask(.appRefresh(taskIdentifier)) {
-            Routine.resetRoutines()
+            await resetRoutines()
         }
+    }
+    
+    private func resetRoutines() {
+        let routines = fetchRoutines()
+        for routine in routines {
+            routine.resetSteps()
+        }
+    }
+
+    private func fetchRoutines() -> [Routine] {
+        let now = Date()
+        let fiveMinutesBeforeNow = now.addingTimeInterval(-5 * 60)
+        let fiveMinutesAfterNow = now.addingTimeInterval(5 * 60)
+        
+        let descriptor = FetchDescriptor<Routine>(
+            predicate: #Predicate { routine in
+                fiveMinutesBeforeNow <= routine.time && routine.time <= fiveMinutesAfterNow
+            }
+        )
+        
+        let routines = try! modelContext.fetch(descriptor)
+        return routines
     }
     
     private func promptForNotifications() {

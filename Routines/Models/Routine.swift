@@ -36,29 +36,6 @@ class Routine: Identifiable {
         self.steps = steps
     }
     
-    static func resetRoutines() {
-        let routines = fetchRoutines()
-        for routine in routines {
-            routine.resetSteps()
-        }
-    }
-    
-    private static func fetchRoutines() -> [Routine] {
-        @Environment(\.modelContext) var modelContext
-        let now = Date()
-        let fiveMinutesBeforeNow = now.addingTimeInterval(-5 * 60)
-        let fiveMinutesAfterNow = now.addingTimeInterval(5 * 60)
-        
-        let descriptor = FetchDescriptor<Routine>(
-            predicate: #Predicate { routine in
-                fiveMinutesBeforeNow <= routine.time && routine.time <= fiveMinutesAfterNow
-            }
-        )
-        
-        let routines = try! modelContext.fetch(descriptor)
-        return routines
-    }
-    
     /// Relates the `String` property `iconColor` to a `Color` from SwiftUI to be used in the interface
     ///
     /// ```swift
@@ -162,7 +139,7 @@ class Routine: Identifiable {
     ///
     /// routine.resetSteps()
     /// ```
-    private func resetSteps() {
+    func resetSteps() {
         for step in steps {
             step.isComplete = false
         }
