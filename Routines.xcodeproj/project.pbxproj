@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,13 +17,17 @@
 		224CA0562C321EEF0096F094 /* RoutinesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224CA0552C321EEF0096F094 /* RoutinesUITests.swift */; };
 		224CA0582C321EEF0096F094 /* RoutinesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224CA0572C321EEF0096F094 /* RoutinesUITestsLaunchTests.swift */; };
 		224CA0652C321FDD0096F094 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224CA0642C321FDD0096F094 /* Routine.swift */; };
-		22540EE42C549D88005E9DD7 /* BackgroundOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22540EE32C549D88005E9DD7 /* BackgroundOperation.swift */; };
 		2282B9E62C3446A5004FECDB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282B9E52C3446A5004FECDB /* SettingsView.swift */; };
 		2282B9E82C34472A004FECDB /* RoutineCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282B9E72C34472A004FECDB /* RoutineCardView.swift */; };
 		22A5E7D82C35E3890024CD51 /* SystemColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E7D72C35E3890024CD51 /* SystemColors.swift */; };
 		22AD80842C541BF1008BB51C /* SystemColorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD80832C541BF1008BB51C /* SystemColorsTests.swift */; };
 		22AD80862C54385B008BB51C /* StepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD80852C54385B008BB51C /* StepTests.swift */; };
 		22AD80882C5439E3008BB51C /* IconListsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD80872C5439E3008BB51C /* IconListsTests.swift */; };
+		22B0E5FF2C5965D900693962 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 22B0E5FE2C5965D900693962 /* FirebaseAuth */; };
+		22B0E6012C5965D900693962 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 22B0E6002C5965D900693962 /* FirebaseFirestore */; };
+		22B0E6032C59660300693962 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0E6022C59660300693962 /* AppDelegate.swift */; };
+		22B0E6052C5969A700693962 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22B0E6042C5969A700693962 /* GoogleService-Info.plist */; };
+		22B0E6072C596BD700693962 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 22B0E6062C596BD700693962 /* FirebaseMessaging */; };
 		22CC80CC2C3464DA0070FFF7 /* RoutineIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC80CB2C3464DA0070FFF7 /* RoutineIconView.swift */; };
 		22CC80D02C346DF40070FFF7 /* RoutineStepListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC80CF2C346DF40070FFF7 /* RoutineStepListView.swift */; };
 		22CC80D22C346FF10070FFF7 /* AddStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC80D12C346FF10070FFF7 /* AddStepView.swift */; };
@@ -61,7 +65,6 @@
 		224CA0552C321EEF0096F094 /* RoutinesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesUITests.swift; sourceTree = "<group>"; };
 		224CA0572C321EEF0096F094 /* RoutinesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		224CA0642C321FDD0096F094 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
-		22540EE32C549D88005E9DD7 /* BackgroundOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundOperation.swift; sourceTree = "<group>"; };
 		227997082C49B24E00D184BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2282B9E52C3446A5004FECDB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2282B9E72C34472A004FECDB /* RoutineCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCardView.swift; sourceTree = "<group>"; };
@@ -69,10 +72,13 @@
 		22AD80832C541BF1008BB51C /* SystemColorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemColorsTests.swift; sourceTree = "<group>"; };
 		22AD80852C54385B008BB51C /* StepTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepTests.swift; sourceTree = "<group>"; };
 		22AD80872C5439E3008BB51C /* IconListsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconListsTests.swift; sourceTree = "<group>"; };
+		22B0E6022C59660300693962 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		22B0E6042C5969A700693962 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22CC80CB2C3464DA0070FFF7 /* RoutineIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineIconView.swift; sourceTree = "<group>"; };
 		22CC80CF2C346DF40070FFF7 /* RoutineStepListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineStepListView.swift; sourceTree = "<group>"; };
 		22CC80D12C346FF10070FFF7 /* AddStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStepView.swift; sourceTree = "<group>"; };
 		22CC80D32C3472ED0070FFF7 /* EditRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoutineView.swift; sourceTree = "<group>"; };
+		22E1DD042C583CBA008C0964 /* Routines.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Routines.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22B0E6072C596BD700693962 /* FirebaseMessaging in Frameworks */,
+				22B0E5FF2C5965D900693962 /* FirebaseAuth in Frameworks */,
+				22B0E6012C5965D900693962 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +132,8 @@
 		224CA0372C321EEE0096F094 /* Routines */ = {
 			isa = PBXGroup;
 			children = (
+				22E1DD042C583CBA008C0964 /* Routines.entitlements */,
+				22B0E6042C5969A700693962 /* GoogleService-Info.plist */,
 				227997082C49B24E00D184BE /* Info.plist */,
 				227997052C498B1600D184BE /* Application */,
 				224CA0662C321FE10096F094 /* Models */,
@@ -187,7 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				224CA0382C321EEE0096F094 /* RoutinesApp.swift */,
-				22540EE32C549D88005E9DD7 /* BackgroundOperation.swift */,
+				22B0E6022C59660300693962 /* AppDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -283,7 +294,6 @@
 				};
 			};
 			buildConfigurationList = 224CA0302C321EEE0096F094 /* Build configuration list for PBXProject "Routines" */;
-			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -291,6 +301,10 @@
 				Base,
 			);
 			mainGroup = 224CA02C2C321EEE0096F094;
+			packageReferences = (
+				22B0E5FD2C5965D900693962 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			preferredProjectObjectVersion = 77;
 			productRefGroup = 224CA0362C321EEE0096F094 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -309,6 +323,7 @@
 			files = (
 				224CA0422C321EEF0096F094 /* Preview Assets.xcassets in Resources */,
 				224CA03F2C321EEF0096F094 /* Assets.xcassets in Resources */,
+				22B0E6052C5969A700693962 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,12 +352,12 @@
 				2282B9E62C3446A5004FECDB /* SettingsView.swift in Sources */,
 				224BD2392C471B4E0080F00E /* IconLists.swift in Sources */,
 				2282B9E82C34472A004FECDB /* RoutineCardView.swift in Sources */,
-				22540EE42C549D88005E9DD7 /* BackgroundOperation.swift in Sources */,
 				224CA03B2C321EEE0096F094 /* RoutineListView.swift in Sources */,
 				224CA03D2C321EEE0096F094 /* Step.swift in Sources */,
 				224CA0652C321FDD0096F094 /* Routine.swift in Sources */,
 				22A5E7D82C35E3890024CD51 /* SystemColors.swift in Sources */,
 				22CC80D42C3472ED0070FFF7 /* EditRoutineView.swift in Sources */,
+				22B0E6032C59660300693962 /* AppDelegate.swift in Sources */,
 				224CA0392C321EEE0096F094 /* RoutinesApp.swift in Sources */,
 				22CC80D02C346DF40070FFF7 /* RoutineStepListView.swift in Sources */,
 				22CC80CC2C3464DA0070FFF7 /* RoutineIconView.swift in Sources */,
@@ -509,15 +524,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Routines/Routines.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Routines/Preview Content\"";
 				DEVELOPMENT_TEAM = G39TU2R26A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Routines/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Routines;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -546,15 +561,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Routines/Routines.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Routines/Preview Content\"";
 				DEVELOPMENT_TEAM = G39TU2R26A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Routines/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Routines;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -690,6 +705,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		22B0E5FD2C5965D900693962 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		22B0E5FE2C5965D900693962 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22B0E5FD2C5965D900693962 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		22B0E6002C5965D900693962 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22B0E5FD2C5965D900693962 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		22B0E6062C596BD700693962 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22B0E5FD2C5965D900693962 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 224CA02D2C321EEE0096F094 /* Project object */;
 }
