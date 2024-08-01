@@ -132,6 +132,8 @@ class Routine: Identifiable {
             step.isComplete = false
         }
         
+        self.isComplete = false
+        
         let content = UNMutableNotificationContent()
         content.title = "Routine Reset"
         content.body = "\(self.name) has been reset. Let's get started!"
@@ -144,14 +146,12 @@ class Routine: Identifiable {
     
     func checkRoutineCompletion() {
         var isComplete = true
-        
         for step in steps {
             if !step.isComplete {
                 isComplete = false
                 break
             }
         }
-        
         self.isComplete = isComplete
     }
 }
