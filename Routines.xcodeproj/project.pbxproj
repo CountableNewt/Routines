@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		223FB7B82C6A633500A74D80 /* Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223FB7B72C6A633500A74D80 /* Tips.swift */; };
 		224BD2392C471B4E0080F00E /* IconLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224BD2382C471B4E0080F00E /* IconLists.swift */; };
 		224CA0392C321EEE0096F094 /* RoutinesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224CA0382C321EEE0096F094 /* RoutinesApp.swift */; };
 		224CA03B2C321EEE0096F094 /* RoutineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224CA03A2C321EEE0096F094 /* RoutineListView.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		223FB7B72C6A633500A74D80 /* Tips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tips.swift; sourceTree = "<group>"; };
 		224BD2382C471B4E0080F00E /* IconLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLists.swift; sourceTree = "<group>"; };
 		224CA0352C321EEE0096F094 /* Routines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Routines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		224CA0382C321EEE0096F094 /* RoutinesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesApp.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				224CA0382C321EEE0096F094 /* RoutinesApp.swift */,
+				223FB7B72C6A633500A74D80 /* Tips.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				224BD2392C471B4E0080F00E /* IconLists.swift in Sources */,
 				2282B9E82C34472A004FECDB /* RoutineCardView.swift in Sources */,
 				224CA03B2C321EEE0096F094 /* RoutineListView.swift in Sources */,
+				223FB7B82C6A633500A74D80 /* Tips.swift in Sources */,
 				22F5EC9D2C5AC6FB0094B1EB /* Symbol.swift in Sources */,
 				22F5EC9F2C5AC7320094B1EB /* FontStyle.swift in Sources */,
 				224CA03D2C321EEE0096F094 /* Step.swift in Sources */,

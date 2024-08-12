@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 struct RoutineListView: View {
     @Environment(\.modelContext) var modelContext
@@ -15,6 +16,7 @@ struct RoutineListView: View {
     @State var settingsIsPresented = false
     @State var newRoutine: Routine?
     @State var resetAlertIsPresented = false
+    let resetRoutinesTip = ResetRoutinesTip()
 
     var body: some View {
         NavigationStack {
@@ -28,15 +30,17 @@ struct RoutineListView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Donate", systemImage: "gear", action: {
-                        settingsIsPresented = true
-                    })
+                    Button("Donate", systemImage: "gear", action: { settingsIsPresented = true })
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Reset Routines", systemImage: "arrow.circlepath", action: { resetAlertIsPresented = true } )
+                    Button("Reset Routines", systemImage: "arrow.circlepath", action: { resetAlertIsPresented = true })
+                        .popoverTip(resetRoutinesTip)
+                        .onTapGesture {
+                            resetRoutinesTip.invalidate(reason: .actionPerformed)
+                        }
                         .alert("Reset Routines to Incomplete?", isPresented: $resetAlertIsPresented) {
                             Button("Reset", role: .destructive, action: resetRoutines)
-                            Button("Cancel", role: .cancel, action: { resetAlertIsPresented = false } )
+                            Button("Cancel", role: .cancel, action: { resetAlertIsPresented = false })
                         }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
