@@ -134,14 +134,14 @@ class Routine: Identifiable {
         
         self.isComplete = false
         
-        let content = UNMutableNotificationContent()
-        content.title = "Routine Reset"
-        content.body = "\(self.name) has been reset. Let's get started!"
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request)
+//        let content = UNMutableNotificationContent()
+//        content.title = "Routine Reset"
+//        content.body = "\(self.name) has been reset. Let's get started!"
+//
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+//        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+//
+//        UNUserNotificationCenter.current().add(request)
     }
     
     func checkRoutineCompletion() {

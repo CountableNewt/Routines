@@ -14,6 +14,7 @@ struct RoutineListView: View {
     @State var addRoutineIsPresented = false
     @State var settingsIsPresented = false
     @State var newRoutine: Routine?
+    @State var resetAlertIsPresented = false
 
     var body: some View {
         NavigationStack {
@@ -30,6 +31,13 @@ struct RoutineListView: View {
                     Button("Donate", systemImage: "gear", action: {
                         settingsIsPresented = true
                     })
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Reset Routines", systemImage: "arrow.circlepath", action: { resetAlertIsPresented = true } )
+                        .alert("Reset Routines to Incomplete?", isPresented: $resetAlertIsPresented) {
+                            Button("Reset", role: .destructive, action: resetRoutines)
+                            Button("Cancel", role: .cancel, action: { resetAlertIsPresented = false } )
+                        }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Add Routine", systemImage: "plus", action: {
@@ -80,14 +88,20 @@ struct RoutineListView: View {
         }
     }
     
-    func addRoutine() {
+    private func resetRoutines() {
+        for routine in routines {
+            routine.resetSteps()
+        }
+    }
+    
+    private func addRoutine() {
         addRoutineIsPresented = true
         let routine = Routine()
         modelContext.insert(routine)
         newRoutine = routine
     }
     
-    func deleteRoutine(_ indexSet: IndexSet) {
+    private func deleteRoutine(_ indexSet: IndexSet) {
         for index in indexSet {
             let routine = routines[index]
             modelContext.delete(routine)
