@@ -12,7 +12,7 @@ import TipKit
 
 @main
 struct RoutinesApp: App {
-    var resetTipsOnLaunch: Bool = false
+    var resetTipsOnLaunch: Bool = true
     
     init() {
         configureTips()
@@ -43,6 +43,7 @@ struct RoutinesApp: App {
             do {
                 if resetTipsOnLaunch {
                     try Tips.resetDatastore()
+                    print("Resetting Tips")
                 }
                 try Tips.configure([
                     .displayFrequency(.immediate),

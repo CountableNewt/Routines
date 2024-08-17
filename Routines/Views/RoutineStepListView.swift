@@ -35,8 +35,11 @@ struct RoutineStepListView: View {
                                     .foregroundStyle(routine.getIconColor())
                             }
                             Text(step.name)
+                            Spacer()
+                            Image(systemName: "line.3.horizontal")
                         }
                     }
+                    .onMove(perform: moveItem)
                     .onDelete(perform: deleteStep)
                     Button(action: addStep) {
                         HStack {
@@ -130,6 +133,10 @@ struct RoutineStepListView: View {
             modelContext.insert(newStep)
             routine.steps.append(newStep)
         }
+    }
+    
+    private func moveItem(from source: IndexSet, to destination: Int) {
+        routine.steps.move(fromOffsets: source, toOffset: destination)
     }
 }
 
