@@ -167,8 +167,7 @@
 		224CA0662C321FE10096F094 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				224CA03C2C321EEE0096F094 /* Step.swift */,
-				224CA0642C321FDD0096F094 /* Routine.swift */,
+				22A8BA822C7D2FDB00C5A1B5 /* Persisted Models */,
 				22A5E7D72C35E3890024CD51 /* SystemColors.swift */,
 				224BD2382C471B4E0080F00E /* IconLists.swift */,
 				22F5EC9C2C5AC6FB0094B1EB /* Symbol.swift */,
@@ -199,6 +198,15 @@
 				223FB7B72C6A633500A74D80 /* Tips.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		22A8BA822C7D2FDB00C5A1B5 /* Persisted Models */ = {
+			isa = PBXGroup;
+			children = (
+				224CA03C2C321EEE0096F094 /* Step.swift */,
+				224CA0642C321FDD0096F094 /* Routine.swift */,
+			);
+			path = "Persisted Models";
 			sourceTree = "<group>";
 		};
 		22AD808A2C544669008BB51C /* ModelTests */ = {
@@ -522,7 +530,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"Routines/Preview Content\"";
 				DEVELOPMENT_TEAM = G39TU2R26A;
 				ENABLE_PREVIEWS = YES;
@@ -559,7 +567,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"Routines/Preview Content\"";
 				DEVELOPMENT_TEAM = G39TU2R26A;
 				ENABLE_PREVIEWS = YES;

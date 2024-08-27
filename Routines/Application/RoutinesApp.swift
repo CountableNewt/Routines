@@ -9,12 +9,20 @@ import SwiftUI
 import SwiftData
 import UserNotifications
 import TipKit
+import SQLite3
 
 @main
 struct RoutinesApp: App {
-    var resetTipsOnLaunch: Bool = false
+    var resetTipsOnLaunch = true
+    let container: ModelContainer
     
     init() {
+        do {
+            container = try ModelContainer(for: Routine.self, Step.self)
+        } catch {
+            fatalError("Failed to load model container: \(error.localizedDescription)")
+        }
+        
         configureTips()
     }
     
@@ -23,7 +31,7 @@ struct RoutinesApp: App {
             RoutineListView()
                 .onAppear(perform: promptForNotifications)
         }
-        .modelContainer(for: Routine.self)
+        .modelContainer(container)
     }
 
     private func promptForNotifications() {
@@ -43,6 +51,7 @@ struct RoutinesApp: App {
             do {
                 if resetTipsOnLaunch {
                     try Tips.resetDatastore()
+                    print("Resetting Tips")
                 }
                 try Tips.configure([
                     .displayFrequency(.immediate),

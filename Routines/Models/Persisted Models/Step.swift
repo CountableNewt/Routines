@@ -7,13 +7,18 @@
 import Foundation
 import SwiftData
 
+    
 @Model
 class Step: Identifiable {
     var id = UUID()
     var name: String
+    var order: Int
+    var routine: Routine
     var isComplete = false
     
-    init(name: String = "Step") {
+    init(name: String = "Step", routine: Routine, order: Int) {
         self.name = name
+        self.routine = routine
+        self.order = order
     }
 }
