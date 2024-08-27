@@ -13,6 +13,7 @@ import UserNotifications
 @Model
 /// This is the main model for the application. Routines are the basis of everything that happens in the app and are used to organize steps into logical groups to be performed at a certain time
 class Routine: Identifiable {
+    
     var id = UUID()
     var name: String
     var time: Date

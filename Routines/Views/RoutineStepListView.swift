@@ -14,6 +14,7 @@ struct RoutineStepListView: View {
     @State private var editRoutineViewIsPresented = false
     @State private var addStepViewIsPresented = false
     @State private var newStepName = ""
+    @FocusState private var isTextFieldFocused: Bool
     
     var body: some View {
         HStack {
@@ -24,7 +25,7 @@ struct RoutineStepListView: View {
         .padding(.leading)
         NavigationStack {
                 List {
-                    ForEach(routine.steps) { step in
+                    ForEach(routine.steps.sorted(by: { $0.order < $1.order }), id: \.id) { step in
                         HStack {
                             Button(action: {
                                 step.isComplete.toggle()
@@ -35,8 +36,6 @@ struct RoutineStepListView: View {
                                     .foregroundStyle(routine.getIconColor())
                             }
                             Text(step.name)
-                            Spacer()
-                            Image(systemName: "line.3.horizontal")
                         }
                     }
                     .onMove(perform: moveItem)
@@ -44,7 +43,11 @@ struct RoutineStepListView: View {
                     Button(action: addStep) {
                         HStack {
                             TextField("Quick Add", text: $newStepName)
-                                .onSubmit(addStep)
+                                .focused($isTextFieldFocused)
+                                .onSubmit {
+                                    addStep()
+                                    isTextFieldFocused = true
+                                }
                             Image(systemName: "plus.circle.fill")
                                 .foregroundStyle(routine.getIconColor())
                         }
@@ -114,29 +117,67 @@ struct RoutineStepListView: View {
                             .navigationTitle("Edit Routine")
                     }
                 }
+                .onTapGesture {
+                    isTextFieldFocused = false
+                }
         }
     }
     
     func deleteStep(_ indexSet: IndexSet) {
-        for index in indexSet {
-            modelContext.delete(routine.steps[index])
-            routine.steps.remove(at: index)
+        var tempSteps = routine.steps
+        tempSteps = tempSteps.sorted(by: { $0.order < $1.order })
+        
+        for index in indexSet.map({ $0 }) {
+            print("Deleting \(tempSteps[index].name) from position \(tempSteps[index].order)")
+            tempSteps.remove(at: index)
         }
+        
+        for (index, step) in tempSteps.enumerated() {
+            step.order = index
+        }
+        
+        routine.steps = tempSteps
+        save()
     }
     
     private func addStep() {
         guard !newStepName.isEmpty else { return }
         
         withAnimation {
-            let newStep = Step(name: newStepName)
+            let newStep = Step(name: newStepName, routine: routine, order: routine.steps.count)
+            print("Adding Step: \(newStep.name) to position: \(newStep.order)")
             newStepName = ""
             modelContext.insert(newStep)
             routine.steps.append(newStep)
         }
+        save()
     }
     
+    // TODO: Check the Routines tab group for a potential fix to reordering steps
     private func moveItem(from source: IndexSet, to destination: Int) {
-        routine.steps.move(fromOffsets: source, toOffset: destination)
+        var tempSteps = routine.steps
+        tempSteps = tempSteps.sorted(by: { $0.order < $1.order })
+        tempSteps.move(fromOffsets: source, toOffset: destination)
+        
+        for (index, step) in tempSteps.enumerated() {
+            step.order = index
+        }
+        
+        routine.steps = tempSteps
+        save()
+        
+        for step in routine.steps.sorted(by: {$0.order < $1.order }) {
+            print("Step \"\(step.name)\" is at index: \(step.order)")
+        }
+        print("----------------------------")
+    }
+    
+    private func save() {
+        do {
+            try modelContext.save()
+        } catch {
+            print("Error Saving: \(error.localizedDescription)")
+        }
     }
 }
 
