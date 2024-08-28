@@ -14,7 +14,6 @@ struct RoutineStepListView: View {
     @State private var editRoutineViewIsPresented = false
     @State private var addStepViewIsPresented = false
     @State private var newStepName = ""
-    @FocusState private var isTextFieldFocused: Bool
     
     var body: some View {
         HStack {
@@ -28,13 +27,29 @@ struct RoutineStepListView: View {
                     ForEach(routine.steps.sorted(by: { $0.order < $1.order }), id: \.id) { step in
                         HStack {
                             Button(action: {
-                                step.isComplete.toggle()
+                                if step.status != .complete {
+                                    step.status = .complete
+                                } else {
+                                    step.status = .incomplete
+                                }
                                 routine.checkRoutineCompletion()
                             }) {
-                                let systemName = step.isComplete ? "checkmark.circle.fill" : "circle"
-                                Image(systemName: systemName)
+                                Image(systemName: step.status.icon)
                                     .foregroundStyle(routine.getIconColor())
+                                    .contentShape(Rectangle())
                             }
+                            .buttonStyle(PlainButtonStyle())
+                            .simultaneousGesture(
+                                LongPressGesture()
+                                    .onEnded {_ in
+                                        if step.status != .skipped {
+                                            step.status = .skipped
+                                        } else {
+                                            step.status = .incomplete
+                                        }
+                                        routine.checkRoutineCompletion()
+                                    }
+                            )
                             Text(step.name)
                         }
                     }
@@ -43,13 +58,14 @@ struct RoutineStepListView: View {
                     Button(action: addStep) {
                         HStack {
                             TextField("Quick Add", text: $newStepName)
-                                .focused($isTextFieldFocused)
                                 .onSubmit {
                                     addStep()
-                                    isTextFieldFocused = true
                                 }
                             Image(systemName: "plus.circle.fill")
                                 .foregroundStyle(routine.getIconColor())
+                                .onTapGesture {
+                                    addStep()
+                                }
                         }
                     }
                 }
@@ -117,9 +133,6 @@ struct RoutineStepListView: View {
                             .navigationTitle("Edit Routine")
                     }
                 }
-                .onTapGesture {
-                    isTextFieldFocused = false
-                }
         }
     }
     
@@ -138,6 +151,7 @@ struct RoutineStepListView: View {
         
         routine.steps = tempSteps
         save()
+        routine.checkRoutineCompletion()
     }
     
     private func addStep() {
@@ -151,9 +165,9 @@ struct RoutineStepListView: View {
             routine.steps.append(newStep)
         }
         save()
+        routine.checkRoutineCompletion()
     }
     
-    // TODO: Check the Routines tab group for a potential fix to reordering steps
     private func moveItem(from source: IndexSet, to destination: Int) {
         var tempSteps = routine.steps
         tempSteps = tempSteps.sorted(by: { $0.order < $1.order })

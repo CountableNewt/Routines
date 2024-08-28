@@ -14,7 +14,7 @@ class Step: Identifiable {
     var name: String
     var order: Int
     var routine: Routine
-    var isComplete = false
+    var status = StepCompletionStatus.incomplete
     
     init(name: String = "Step", routine: Routine, order: Int) {
         self.name = name

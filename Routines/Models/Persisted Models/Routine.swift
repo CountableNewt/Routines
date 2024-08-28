@@ -19,7 +19,7 @@ class Routine: Identifiable {
     var time: Date
     var iconColor: String // Stored as a string because Color is not encodable for persistence with SwiftData
     var iconSymbol: String
-    var isComplete: Bool = false
+    var status = RoutineCompletionStatus.incomplete
     @Relationship(deleteRule: .cascade) var steps = [Step]()
     
     init(name: String = "New Routine", time: Date = Date(), iconColor: String = SystemColors.blue.rawValue, iconSymbol: String = "list.bullet") {
@@ -130,10 +130,10 @@ class Routine: Identifiable {
     /// ```
     func resetSteps() {
         for step in steps {
-            step.isComplete = false
+            step.status = .incomplete
         }
         
-        self.isComplete = false
+        self.status = .incomplete
         
 //        let content = UNMutableNotificationContent()
 //        content.title = "Routine Reset"
@@ -146,13 +146,15 @@ class Routine: Identifiable {
     }
     
     func checkRoutineCompletion() {
-        var isComplete = true
+        var status = RoutineCompletionStatus.complete
         for step in steps {
-            if !step.isComplete {
-                isComplete = false
+            if step.status == .incomplete {
+                status = .incomplete
                 break
+            } else if step.status == .skipped {
+                status = .completeWithSkippedSteps
             }
         }
-        self.isComplete = isComplete
+        self.status = status
     }
 }

@@ -22,10 +22,9 @@ struct RoutineCardView: View {
                     HStack {
                         Text(routine.name)
                             .font(.headline)
-                        if routine.isComplete {
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
-                        }
+                        Image(systemName: "checkmark.circle")
+                            .symbolRenderingMode(.palette)
+                            .foregroundStyle(routine.status.icon.iconColor2 ?? routine.status.icon.iconColor1, routine.status.icon.iconColor1)
                         Spacer()
                     }
                 }
@@ -43,6 +42,6 @@ struct RoutineCardView: View {
     }
 }
 
-#Preview {
-    RoutineCardView(routine: Routine())
-}
+//#Preview {
+//    RoutineCardView(routine: Routine())
+//}

@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 import UserNotifications
 import TipKit
-import SQLite3
 
 @main
 struct RoutinesApp: App {

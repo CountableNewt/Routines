@@ -31,6 +31,9 @@
 		22F5EC9D2C5AC6FB0094B1EB /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F5EC9C2C5AC6FB0094B1EB /* Symbol.swift */; };
 		22F5EC9F2C5AC7320094B1EB /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F5EC9E2C5AC7320094B1EB /* FontStyle.swift */; };
 		22F5ECA12C5AC78E0094B1EB /* SocialLinkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F5ECA02C5AC78E0094B1EB /* SocialLinkList.swift */; };
+		22FE733E2C7F60EE008A1D24 /* StepCompletionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FE733D2C7F60EE008A1D24 /* StepCompletionStatus.swift */; };
+		22FE73402C7F6179008A1D24 /* RoutineCompletionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FE733F2C7F6179008A1D24 /* RoutineCompletionStatus.swift */; };
+		22FE73422C7F7BD1008A1D24 /* RoutineCompletionIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FE73412C7F7BD1008A1D24 /* RoutineCompletionIcon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +82,9 @@
 		22F5EC9C2C5AC6FB0094B1EB /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 		22F5EC9E2C5AC7320094B1EB /* FontStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
 		22F5ECA02C5AC78E0094B1EB /* SocialLinkList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLinkList.swift; sourceTree = "<group>"; };
+		22FE733D2C7F60EE008A1D24 /* StepCompletionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCompletionStatus.swift; sourceTree = "<group>"; };
+		22FE733F2C7F6179008A1D24 /* RoutineCompletionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCompletionStatus.swift; sourceTree = "<group>"; };
+		22FE73412C7F7BD1008A1D24 /* RoutineCompletionIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCompletionIcon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +179,9 @@
 				22F5EC9C2C5AC6FB0094B1EB /* Symbol.swift */,
 				22F5ECA02C5AC78E0094B1EB /* SocialLinkList.swift */,
 				22F5EC9E2C5AC7320094B1EB /* FontStyle.swift */,
+				22FE733D2C7F60EE008A1D24 /* StepCompletionStatus.swift */,
+				22FE733F2C7F6179008A1D24 /* RoutineCompletionStatus.swift */,
+				22FE73412C7F7BD1008A1D24 /* RoutineCompletionIcon.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -351,6 +360,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				22CC80D22C346FF10070FFF7 /* AddStepView.swift in Sources */,
+				22FE73422C7F7BD1008A1D24 /* RoutineCompletionIcon.swift in Sources */,
+				22FE733E2C7F60EE008A1D24 /* StepCompletionStatus.swift in Sources */,
 				2282B9E62C3446A5004FECDB /* SettingsView.swift in Sources */,
 				224BD2392C471B4E0080F00E /* IconLists.swift in Sources */,
 				2282B9E82C34472A004FECDB /* RoutineCardView.swift in Sources */,
@@ -359,6 +370,7 @@
 				22F5EC9D2C5AC6FB0094B1EB /* Symbol.swift in Sources */,
 				22F5EC9F2C5AC7320094B1EB /* FontStyle.swift in Sources */,
 				224CA03D2C321EEE0096F094 /* Step.swift in Sources */,
+				22FE73402C7F6179008A1D24 /* RoutineCompletionStatus.swift in Sources */,
 				224CA0652C321FDD0096F094 /* Routine.swift in Sources */,
 				22A5E7D82C35E3890024CD51 /* SystemColors.swift in Sources */,
 				22F5ECA12C5AC78E0094B1EB /* SocialLinkList.swift in Sources */,
