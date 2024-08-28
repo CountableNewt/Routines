@@ -20,13 +20,20 @@ struct RoutineListView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(routines) { routine in
-                    NavigationLink(destination: RoutineStepListView(routine: routine)) {
-                        RoutineCardView(routine: routine)
+            Group {
+                if routines.isEmpty {
+                    Text("No Routines")
+                        .foregroundStyle(.secondary)
+                } else {
+                    List {
+                        ForEach(routines) { routine in
+                            NavigationLink(destination: RoutineStepListView(routine: routine)) {
+                                RoutineCardView(routine: routine)
+                            }
+                        }
+                        .onDelete(perform: deleteRoutine)
                     }
                 }
-                .onDelete(perform: deleteRoutine)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
