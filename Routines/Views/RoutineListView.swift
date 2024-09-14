@@ -11,7 +11,7 @@ import TipKit
 
 struct RoutineListView: View {
     @Environment(\.modelContext) var modelContext
-    @Query(sort: [SortDescriptor(\Routine.time, order: .forward)]) var routines: [Routine]
+    @Query var routines: [Routine]
     @State var addRoutineIsPresented = false
     @State var settingsIsPresented = false
     @State var newRoutine: Routine?
@@ -26,7 +26,7 @@ struct RoutineListView: View {
                         .foregroundStyle(.secondary)
                 } else {
                     List {
-                        ForEach(routines) { routine in
+                        ForEach(routines.sorted(by: { getTimeComponent($0.time) < getTimeComponent($1.time) }), id: \.id) { routine in
                             NavigationLink(destination: RoutineStepListView(routine: routine)) {
                                 RoutineCardView(routine: routine)
                             }
@@ -97,6 +97,12 @@ struct RoutineListView: View {
                 }
             }
         }
+    }
+    
+    private func getTimeComponent(_ date: Date) -> Date {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.hour, .minute], from: date)
+        return calendar.date(from: components) ?? date
     }
     
     private func resetRoutines() {
