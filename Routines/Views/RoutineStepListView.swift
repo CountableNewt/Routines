@@ -14,6 +14,8 @@ struct RoutineStepListView: View {
     @State private var editRoutineViewIsPresented = false
     @State private var addStepViewIsPresented = false
     @State private var newStepName = ""
+    @State private var editingStepIndex: Int? = nil
+    @State private var updatedStepName: String = ""
     
     var body: some View {
         HStack {
@@ -50,7 +52,23 @@ struct RoutineStepListView: View {
                                         routine.checkRoutineCompletion()
                                     }
                             )
-                            Text(step.name)
+                            if editingStepIndex == step.order {
+                                TextField(step.name, text: $updatedStepName)
+                                    .onSubmit {
+                                        guard updatedStepName.isEmpty else {
+                                            step.name = updatedStepName
+                                            return
+                                        }
+                                        editingStepIndex = nil
+                                        save()
+                                    }
+                            } else {
+                                Text(step.name)
+                                    .onTapGesture {
+                                        updatedStepName = step.name
+                                        editingStepIndex = step.order
+                                    }
+                            }
                         }
                     }
                     .onMove(perform: moveItem)
