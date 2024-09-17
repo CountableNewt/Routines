@@ -145,6 +145,7 @@ struct RoutineStepListView: View {
                             routine.time = tempRoutine.time
                             routine.iconSymbol = tempRoutine.iconSymbol
                             routine.iconColor = tempRoutine.iconColor
+                            routine.days = tempRoutine.days
                             modelContext.delete(tempRoutine)
                             editRoutineViewIsPresented = false
                         })

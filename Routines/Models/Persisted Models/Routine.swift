@@ -20,6 +20,7 @@ class Routine: Identifiable {
     var iconColor: String // Stored as a string because Color is not encodable for persistence with SwiftData
     var iconSymbol: String
     var status = RoutineCompletionStatus.incomplete
+    var days: [String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     @Relationship(deleteRule: .cascade) var steps = [Step]()
     
     init(name: String = "New Routine", time: Date = Date(), iconColor: String = SystemColors.blue.rawValue, iconSymbol: String = "list.bullet") {
@@ -35,6 +36,14 @@ class Routine: Identifiable {
         self.iconColor = iconColor
         self.iconSymbol = iconSymbol
         self.steps = steps
+    }
+    
+    init(name: String = "New Routine", time: Date = Date(), iconColor: String = SystemColors.blue.rawValue, iconSymbol: String = "list.bullet", days: [String]) {
+        self.name = name
+        self.time = time
+        self.iconColor = iconColor
+        self.iconSymbol = iconSymbol
+        self.days = days
     }
     
     
@@ -113,7 +122,7 @@ class Routine: Identifiable {
     /// ```
     /// - Returns: A new `Routine` object with the same values as `self`
     func copy() -> Routine {
-        let copy = Routine(name: self.name, time: self.time, iconColor: self.iconColor, iconSymbol: self.iconSymbol)
+        let copy = Routine(name: self.name, time: self.time, iconColor: self.iconColor, iconSymbol: self.iconSymbol, days: self.days)
         return copy
     }
     
@@ -156,5 +165,18 @@ class Routine: Identifiable {
             }
         }
         self.status = status
+    }
+    
+    func isToday() -> Bool {
+        let date = Date()
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "EEEE"
+        formatter.locale = Locale(identifier: "en_US")
+        
+        let dayOfWeek = formatter.string(from: date)
+        print(dayOfWeek)
+        
+        return days.contains(dayOfWeek)
     }
 }

@@ -16,7 +16,18 @@ struct RoutineListView: View {
     @State var settingsIsPresented = false
     @State var newRoutine: Routine?
     @State var resetAlertIsPresented = false
+    @State var showAllRoutines = false
+    @State var routinesAreHidden = false
+    
     let resetRoutinesTip = ResetRoutinesTip()
+    var today: String {
+        let date = Date()
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "EEEE"
+        
+        return formatter.string(from: date)
+    }
 
     var body: some View {
         NavigationStack {
@@ -27,8 +38,10 @@ struct RoutineListView: View {
                 } else {
                     List {
                         ForEach(routines.sorted(by: { getTimeComponent($0.time) < getTimeComponent($1.time) }), id: \.id) { routine in
-                            NavigationLink(destination: RoutineStepListView(routine: routine)) {
-                                RoutineCardView(routine: routine)
+                            if routine.isToday() || showAllRoutines {
+                                NavigationLink(destination: RoutineStepListView(routine: routine)) {
+                                    RoutineCardView(routine: routine)
+                                }
                             }
                         }
                         .onDelete(perform: deleteRoutine)
@@ -36,6 +49,11 @@ struct RoutineListView: View {
                 }
             }
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Show All Routines", systemImage: showAllRoutines ? "eye" : "eye.slash") {
+                        showAllRoutines.toggle()
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Donate", systemImage: "gear", action: { settingsIsPresented = true })
                 }
@@ -90,6 +108,7 @@ struct RoutineListView: View {
                             routine.time = tempRoutine.time
                             routine.iconSymbol = tempRoutine.iconSymbol
                             routine.iconColor = tempRoutine.iconColor
+                            routine.days = tempRoutine.days
                         }
                         addRoutineIsPresented = false
                     })

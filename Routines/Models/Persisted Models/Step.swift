@@ -15,6 +15,7 @@ class Step: Identifiable {
     var order: Int
     var routine: Routine
     var status = StepCompletionStatus.incomplete
+    var days: [String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     
     init(name: String = "Step", routine: Routine, order: Int) {
         self.name = name
