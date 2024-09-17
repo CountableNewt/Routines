@@ -14,7 +14,6 @@ struct DayToggleButton: View {
     
     var body: some View {
         HStack {
-            Spacer()
             Circle()
                 .fill(isSelected ? .blue : .clear)
                 .frame(width: 32)
@@ -26,7 +25,7 @@ struct DayToggleButton: View {
                 .onTapGesture {
                     action()
                 }
-            Spacer()
         }
+        .frame(maxWidth: .infinity)
     }
 }

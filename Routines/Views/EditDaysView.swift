@@ -16,11 +16,12 @@ public struct EditDaysView: View {
         HStack {
             ForEach(daysOfTheWeek, id: \.self) { day in
                 DayToggleButton(day: day, isSelected: days.contains(day)) {
-                    toggleDay(day)
+                    withAnimation {
+                        toggleDay(day)
+                    }
                 }
             }
         }
-        .frame(maxWidth: .infinity)
     }
     
     func toggleDay(_ day: String) {

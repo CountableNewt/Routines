@@ -17,7 +17,7 @@ struct RoutineIconView: View {
             .frame(width: 42)
             .overlay(
                 Image(systemName: routine.iconSymbol)
-                .foregroundColor(.white)
+                .foregroundStyle(.white)
             )
     }
 }

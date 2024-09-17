@@ -20,8 +20,19 @@ class Routine: Identifiable {
     var iconColor: String // Stored as a string because Color is not encodable for persistence with SwiftData
     var iconSymbol: String
     var status = RoutineCompletionStatus.incomplete
-    var days: [String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    
+    var days: [String] {
+        get {
+            guard let data = daysData else { return ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] }
+            return (try? JSONDecoder().decode([String].self, from: data)) ?? []
+        }
+        set {
+            daysData = try? JSONEncoder().encode(newValue)
+        }
+    }
+    
     @Relationship(deleteRule: .cascade) var steps = [Step]()
+    @Attribute private var daysData: Data? = nil
     
     init(name: String = "New Routine", time: Date = Date(), iconColor: String = SystemColors.blue.rawValue, iconSymbol: String = "list.bullet") {
         self.name = name
@@ -175,7 +186,7 @@ class Routine: Identifiable {
         formatter.locale = Locale(identifier: "en_US")
         
         let dayOfWeek = formatter.string(from: date)
-        print(dayOfWeek)
+        // print(dayOfWeek)
         
         return days.contains(dayOfWeek)
     }
