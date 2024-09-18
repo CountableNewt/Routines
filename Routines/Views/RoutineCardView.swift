@@ -10,6 +10,19 @@ import SwiftUI
 
 struct RoutineCardView: View {
     var routine: Routine
+    var stepCount: Int {
+        if routine.steps.count == 0 {
+            return 0
+        } else {
+            var tempCount = 0
+            for step in routine.steps {
+                if step.isToday() {
+                    tempCount += 1
+                }
+            }
+            return tempCount
+        }
+    }
     
     var body: some View {
         VStack {
@@ -33,7 +46,7 @@ struct RoutineCardView: View {
             }
             HStack {
                 Image(systemName: "list.bullet")
-                Text("\(routine.steps.count) steps")
+                Text("\(stepCount) step\(stepCount != 1 ? "s" : "") today")
                 Spacer()
                 Text("\(routine.timeToString())")
                 Image(systemName: "clock")
