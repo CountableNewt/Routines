@@ -62,6 +62,9 @@ struct RoutineListView: View {
                             .onDelete(perform: deleteRoutine)
                         }
                         .onAppear() {
+                            for routine in routines {
+                                routine.checkRoutineCompletion()
+                            }
                             withAnimation {
                                 addButtonIsPresented = true
                             }
