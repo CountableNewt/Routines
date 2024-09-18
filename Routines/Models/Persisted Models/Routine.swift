@@ -168,6 +168,7 @@ class Routine: Identifiable {
     func checkRoutineCompletion() {
         var status = RoutineCompletionStatus.complete
         for step in steps {
+            guard step.isToday() else { continue }
             if step.status == .incomplete {
                 status = .incomplete
                 break
