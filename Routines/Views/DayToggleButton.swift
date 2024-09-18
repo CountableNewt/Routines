@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DayToggleButton: View {
+    var iconColor: Color
     let day: String
     let isSelected: Bool
     let action: () -> Void
@@ -15,7 +16,7 @@ struct DayToggleButton: View {
     var body: some View {
         HStack {
             Circle()
-                .fill(isSelected ? .blue : .clear)
+                .fill(isSelected ? iconColor : .clear)
                 .frame(width: 32)
                 .overlay(
                     Text(day.prefix(1))

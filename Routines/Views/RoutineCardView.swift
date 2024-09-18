@@ -22,9 +22,11 @@ struct RoutineCardView: View {
                     HStack {
                         Text(routine.name)
                             .font(.headline)
-                        Image(systemName: "checkmark.circle")
-                            .symbolRenderingMode(.palette)
-                            .foregroundStyle(routine.status.icon.iconColor2 ?? routine.status.icon.iconColor1, routine.status.icon.iconColor1)
+                        if routine.steps.count > 0 {
+                            Image(systemName: "checkmark.circle")
+                                .symbolRenderingMode(.palette)
+                                .foregroundStyle(routine.status.icon.iconColor2 ?? routine.status.icon.iconColor1, routine.status.icon.iconColor1)
+                        }
                         Spacer()
                     }
                 }

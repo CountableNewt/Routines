@@ -10,16 +10,21 @@ import SwiftData
 import TipKit
 
 struct RoutineListView: View {
+    // Data Models
     @Environment(\.modelContext) var modelContext
     @Query var routines: [Routine]
-    @State var addRoutineIsPresented = false
-    @State var settingsIsPresented = false
     @State var newRoutine: Routine?
-    @State var resetAlertIsPresented = false
-    @State var showAllRoutines = false
-    @State var routinesAreHidden = false
-    @State private var addIsPressed = false
     
+    // Presentation Logic
+    @State private var addRoutineIsPresented = false
+    @State private var settingsIsPresented = false
+    @State private var resetAlertIsPresented = false
+    @State private var showAllRoutines = false
+    @State private var routinesAreHidden = false
+    @State private var addIsPressed = false
+    @State private var addButtonIsPresented = true
+    
+    // IDK, the rest of the stuff
     let backgroundGradient = Gradient(colors: [.purple, .clear])
     
     let resetRoutinesTip = ResetRoutinesTip()
@@ -34,7 +39,7 @@ struct RoutineListView: View {
 
     var body: some View {
         ZStack {
-            
+            // TODO: This isn't working
             LinearGradient(gradient: backgroundGradient, startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea(.all)
             
@@ -47,12 +52,19 @@ struct RoutineListView: View {
                         List {
                             ForEach(routines.sorted(by: { getTimeComponent($0.time) < getTimeComponent($1.time) }), id: \.id) { routine in
                                 if routine.isToday() || showAllRoutines {
-                                    NavigationLink(destination: RoutineStepListView(routine: routine)) {
+                                    NavigationLink(destination: RoutineStepListView(routine: routine)
+                                        .onAppear { addButtonIsPresented = false }
+                                    ) {
                                         RoutineCardView(routine: routine)
                                     }
                                 }
                             }
                             .onDelete(perform: deleteRoutine)
+                        }
+                        .onAppear() {
+                            withAnimation {
+                                addButtonIsPresented = true
+                            }
                         }
                     }
                 }
@@ -119,36 +131,37 @@ struct RoutineListView: View {
                     }
                 }
             }
-            
-            VStack {
-                Spacer()
-                HStack {
+            if addButtonIsPresented {
+                VStack {
                     Spacer()
-                    Circle()
-                        .fill(addIsPressed ? Color.accentColor.opacity(0.7) : Color.accentColor)
-                        .frame(width: 60)
-                        .overlay(
-                            Image(systemName: "plus")
-                                .foregroundStyle(.white)
-                                .font(.title2)
-                        )
-                        .gesture(
-                            DragGesture(minimumDistance: 0)
-                                .onChanged { _ in
-                                    withAnimation {
-                                        addIsPressed = true
+                    HStack {
+                        Spacer()
+                        Circle()
+                            .fill(addIsPressed ? Color.accentColor.opacity(0.7) : Color.accentColor)
+                            .frame(width: 60)
+                            .overlay(
+                                Image(systemName: "plus")
+                                    .foregroundStyle(.white)
+                                    .font(.title2)
+                            )
+                            .gesture(
+                                DragGesture(minimumDistance: 0)
+                                    .onChanged { _ in
+                                        withAnimation {
+                                            addIsPressed = true
+                                        }
                                     }
-                                }
-                                .onEnded { _ in
-                                    withAnimation {
-                                        addIsPressed = false
-                                        addRoutine()
+                                    .onEnded { _ in
+                                        withAnimation {
+                                            addIsPressed = false
+                                            addRoutine()
+                                        }
                                     }
-                                }
-                        )
+                            )
+                    }
+                    .padding(.trailing, 30)
+                    .padding(.bottom, 20)
                 }
-                .padding(.trailing, 30)
-                .padding(.bottom, 20)
             }
         }
     }
@@ -174,7 +187,7 @@ struct RoutineListView: View {
     
     private func deleteRoutine(_ indexSet: IndexSet) {
         for index in indexSet {
-            let routine = routines[index]
+            let routine = routines.sorted(by: { getTimeComponent($0.time) < getTimeComponent($1.time) })[index]
             modelContext.delete(routine)
         }
     }

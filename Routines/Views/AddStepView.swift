@@ -11,11 +11,16 @@ import SwiftUI
 struct AddStepView: View {
     @Binding var newStep: String
     @Binding var isPresented: Bool
+    @Binding var days: [String]
+    var iconColor: Color
     
     var body: some View {
         Form {
             Section("Name") {
                 TextField("Step", text: $newStep)
+            }
+            Section("Days") {
+                EditDaysView(days: $days, iconColor: iconColor)
             }
         }
     }

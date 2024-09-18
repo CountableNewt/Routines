@@ -10,12 +10,13 @@ import SwiftUI
 
 public struct EditDaysView: View {
     @Binding var days: [String]
+    var iconColor: Color
     let daysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     
     public var body: some View {
         HStack {
             ForEach(daysOfTheWeek, id: \.self) { day in
-                DayToggleButton(day: day, isSelected: days.contains(day)) {
+                DayToggleButton(iconColor: iconColor, day: day, isSelected: days.contains(day)) {
                     withAnimation {
                         toggleDay(day)
                     }

@@ -28,9 +28,10 @@ struct EditRoutineView: View {
                 TextField("Routine Name", text: $tempRoutine.name)
             }
             Section("Time & Days") {
-                DatePicker("Routine Time", selection: $tempRoutine.time, displayedComponents: .hourAndMinute)
+                DatePicker("Time", selection: $tempRoutine.time, displayedComponents: .hourAndMinute)
                     .datePickerStyle(.compact)
-                EditDaysView(days: $tempRoutine.days)
+                EditDaysView(days: $tempRoutine.days, iconColor: .accentColor)
+                    .padding(.vertical, 3)
             }
             Section("Icon") {
                 HStack {
