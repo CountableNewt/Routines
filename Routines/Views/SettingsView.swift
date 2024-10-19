@@ -9,13 +9,11 @@ import Foundation
 import SwiftUI
 
 struct SettingsView: View {
-    @Environment(\.colorScheme) var colorScheme
     @StateObject private var socialLinkList = SocialLinkList()
     @Binding var isPresented: Bool
     
     let versionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     let buildNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
-    let logoWidth = 20.0
     
     var body: some View {
         NavigationStack {

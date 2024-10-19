@@ -18,7 +18,7 @@ struct Routines_WidgetsControl: ControlWidget {
             ControlWidgetButton(
                 action: LaunchAppIntent()
             ) {
-                Label("Open App", systemImage: "checklist")
+                Label("Open Routines", systemImage: "checklist")
             }
         }
         .displayName("Open Routines")

@@ -31,7 +31,6 @@
 		22CC80D22C346FF10070FFF7 /* AddStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC80D12C346FF10070FFF7 /* AddStepView.swift */; };
 		22CC80D42C3472ED0070FFF7 /* EditRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC80D32C3472ED0070FFF7 /* EditRoutineView.swift */; };
 		22F5EC9D2C5AC6FB0094B1EB /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F5EC9C2C5AC6FB0094B1EB /* Symbol.swift */; };
-		22F5EC9F2C5AC7320094B1EB /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F5EC9E2C5AC7320094B1EB /* FontStyle.swift */; };
 		22F5ECA12C5AC78E0094B1EB /* SocialLinkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F5ECA02C5AC78E0094B1EB /* SocialLinkList.swift */; };
 		22FD50C92C96A13C002C7599 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FD50C82C96A13C002C7599 /* WidgetKit.framework */; };
 		22FD50CB2C96A13C002C7599 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FD50CA2C96A13C002C7599 /* SwiftUI.framework */; };
@@ -66,6 +65,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		225423342CC40B0B00061FF9 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		22FD50D92C96A13D002C7599 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -108,7 +117,6 @@
 		22CC80D12C346FF10070FFF7 /* AddStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStepView.swift; sourceTree = "<group>"; };
 		22CC80D32C3472ED0070FFF7 /* EditRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoutineView.swift; sourceTree = "<group>"; };
 		22F5EC9C2C5AC6FB0094B1EB /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
-		22F5EC9E2C5AC7320094B1EB /* FontStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
 		22F5ECA02C5AC78E0094B1EB /* SocialLinkList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLinkList.swift; sourceTree = "<group>"; };
 		22FD50C62C96A13C002C7599 /* Routines WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Routines WidgetsExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22FD50C82C96A13C002C7599 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -250,7 +258,6 @@
 				224BD2382C471B4E0080F00E /* IconLists.swift */,
 				22F5EC9C2C5AC6FB0094B1EB /* Symbol.swift */,
 				22F5ECA02C5AC78E0094B1EB /* SocialLinkList.swift */,
-				22F5EC9E2C5AC7320094B1EB /* FontStyle.swift */,
 				22FE733D2C7F60EE008A1D24 /* StepCompletionStatus.swift */,
 				22FE733F2C7F6179008A1D24 /* RoutineCompletionStatus.swift */,
 				22FE73412C7F7BD1008A1D24 /* RoutineCompletionIcon.swift */,
@@ -323,6 +330,7 @@
 				224CA0322C321EEE0096F094 /* Frameworks */,
 				224CA0332C321EEE0096F094 /* Resources */,
 				22FD50D92C96A13D002C7599 /* Embed Foundation Extensions */,
+				225423342CC40B0B00061FF9 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
@@ -399,7 +407,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1610;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					224CA0342C321EEE0096F094 = {
@@ -487,7 +495,6 @@
 				223FB7B82C6A633500A74D80 /* Tips.swift in Sources */,
 				22F5EC9D2C5AC6FB0094B1EB /* Symbol.swift in Sources */,
 				226D5A512C98E1C000097158 /* DayToggleButton.swift in Sources */,
-				22F5EC9F2C5AC7320094B1EB /* FontStyle.swift in Sources */,
 				224CA03D2C321EEE0096F094 /* Step.swift in Sources */,
 				226D5A4F2C98D34C00097158 /* EditDaysView.swift in Sources */,
 				22FE73402C7F6179008A1D24 /* RoutineCompletionStatus.swift in Sources */,
@@ -673,8 +680,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"Routines/Preview Content\"";
 				DEVELOPMENT_TEAM = G39TU2R26A;
 				ENABLE_PREVIEWS = YES;
@@ -710,8 +718,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"Routines/Preview Content\"";
 				DEVELOPMENT_TEAM = G39TU2R26A;
 				ENABLE_PREVIEWS = YES;
@@ -820,7 +829,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = G39TU2R26A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Routines Widgets/Info.plist";
@@ -852,7 +861,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = G39TU2R26A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Routines Widgets/Info.plist";

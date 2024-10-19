@@ -35,6 +35,12 @@ struct RoutineCardView: View {
                     HStack {
                         Text(routine.name)
                             .font(.headline)
+                        if(routine.status == .incomplete) {
+                            Spacer()
+                            ProgressView(value: (stepCount == 0) ? 0 : Double(routine.finishedStepCount) / Double(stepCount))
+                                .padding(.leading)
+                                .tint(routine.getIconColor())
+                        }
                         if routine.steps.count > 0 {
                             Image(systemName: "checkmark.circle")
                                 .symbolRenderingMode(.palette)

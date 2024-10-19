@@ -20,6 +20,7 @@ class Routine: Identifiable {
     var iconColor: String // Stored as a string because Color is not encodable for persistence with SwiftData
     var iconSymbol: String
     var status = RoutineCompletionStatus.incomplete
+    var finishedStepCount = 0
     
     var days: [String] {
         get {
@@ -154,6 +155,7 @@ class Routine: Identifiable {
         }
         
         self.status = .incomplete
+        self.finishedStepCount = 0
         
 //        let content = UNMutableNotificationContent()
 //        content.title = "Routine Reset"
@@ -166,17 +168,31 @@ class Routine: Identifiable {
     }
     
     func checkRoutineCompletion() {
-        var status = RoutineCompletionStatus.complete
+        var finishedCount = 0
+        var incompleteFlag = false
+        var skippedFlag = false
+        
         for step in steps {
             guard step.isToday() else { continue }
             if step.status == .incomplete {
-                status = .incomplete
-                break
+                incompleteFlag = true
             } else if step.status == .skipped {
-                status = .completeWithSkippedSteps
+                skippedFlag = true
+                finishedCount += 1
+            } else {
+                finishedCount += 1
             }
         }
-        self.status = status
+        
+        if incompleteFlag {
+            self.status = .incomplete
+        } else if skippedFlag {
+            self.status = .completeWithSkippedSteps
+        } else {
+            self.status = .complete
+        }
+        
+        self.finishedStepCount = finishedCount
     }
     
     func isToday() -> Bool {
@@ -191,4 +207,5 @@ class Routine: Identifiable {
         
         return days.contains(dayOfWeek)
     }
+    
 }
