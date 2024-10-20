@@ -62,7 +62,7 @@ struct RoutineStepListView: View {
                     }, onSave: { tempRoutine in
                         saveRoutine(tempRoutine)
                     })
-                    .navigationTitle("Edit Routine")
+                    .navigationTitle("Edit \(routine.name)")
                 } // NavigationStack
             } // sheet
             .onAppear() {

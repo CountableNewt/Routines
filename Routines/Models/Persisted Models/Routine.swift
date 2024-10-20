@@ -192,6 +192,9 @@ class Routine: Identifiable {
             self.status = .complete
         }
         
+        if steps.count == 0 {
+            self.status = .incomplete
+        }
         self.finishedStepCount = finishedCount
     }
     
@@ -206,6 +209,26 @@ class Routine: Identifiable {
         // print(dayOfWeek)
         
         return days.contains(dayOfWeek)
+    }
+    
+    func skipRemainingSteps() {
+        for step in steps {
+            if step.status == .incomplete && step.isToday() {
+                step.status = .skipped
+            }
+        }
+        
+        self.checkRoutineCompletion()
+    }
+    
+    func completeRemainingSteps() {
+        for step in steps {
+            if step.status == .incomplete && step.isToday() {
+                step.status = .complete
+            }
+        }
+        
+        self.checkRoutineCompletion()
     }
     
 }

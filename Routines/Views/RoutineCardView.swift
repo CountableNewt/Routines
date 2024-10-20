@@ -35,16 +35,17 @@ struct RoutineCardView: View {
                     HStack {
                         Text(routine.name)
                             .font(.headline)
-                        if(routine.status == .incomplete) {
-                            Spacer()
+                            .layoutPriority(1) // Prevents the text from wrapping by resizing the ProgressView
+                        if routine.status == .incomplete {
                             ProgressView(value: (stepCount == 0) ? 0 : Double(routine.finishedStepCount) / Double(stepCount))
                                 .padding(.leading)
                                 .tint(routine.getIconColor())
-                        }
-                        if routine.steps.count > 0 {
+                                .layoutPriority(0) // Resizes the ProgressView to avoid text wrapping
+                        } else {
                             Image(systemName: "checkmark.circle")
                                 .symbolRenderingMode(.palette)
                                 .foregroundStyle(routine.status.icon.iconColor2 ?? routine.status.icon.iconColor1, routine.status.icon.iconColor1)
+                                .padding(.bottom, 1) // ProgressView is a little taller than Image so this prevents the card from changing size when you reset the routine to incomplete
                         }
                         Spacer()
                     }
